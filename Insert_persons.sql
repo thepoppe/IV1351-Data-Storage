@@ -142,6 +142,21 @@ VALUES
   (30, 30); -- David Davis;
 
 
+
+
+--adding sibling
+insert into sibling(person_id,sibling_id,relation_type)
+values 
+  (1,2, 'Brother'),
+  (1,3, 'Sister'),
+  (5,10, 'Sister'),
+  (11,12, 'Sister'),
+  (24,25, 'Brother');
+
+insert into sibling(person_id,sibling_id)
+value(2,3);
+
+
 --general insert for student with all new
 INSERT INTO student (person_number, first_name,last_name,phone_number,email_address)
 VALUES('personnumber','some_name','some_surname','some_phone','some_email');
