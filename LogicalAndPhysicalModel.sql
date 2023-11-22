@@ -6,7 +6,7 @@ CREATE TYPE lesson_type AS ENUM ('Individual', 'Group', 'Ensemble');
 
 --Table configs
 CREATE TABLE address (
- id SERIAL NOT NULL,
+ address_id SERIAL NOT NULL,
  street VARCHAR(200) NOT NULL,
  zip VARCHAR(5) NOT NULL,
  city VARCHAR(100) NOT NULL
