@@ -1,9 +1,10 @@
+--Type configs
 CREATE TYPE instrument_type AS ENUM ('Guitar', 'Piano', 'Violin', 'Drums', 'Other');
 CREATE TYPE level_type AS ENUM ('Beginner', 'Intermiediate', 'Advanced');
 CREATE TYPE lesson_type AS ENUM ('Individual', 'Group', 'Ensemble');
 
 
-
+--Table configs
 CREATE TABLE address (
  id SERIAL NOT NULL,
  street VARCHAR(200) NOT NULL,
@@ -55,7 +56,7 @@ ALTER TABLE rental_instrument ADD CONSTRAINT PK_rental_instrument PRIMARY KEY (i
 CREATE TABLE student (
  person_id SERIAL NOT NULL,
  student_id SERIAL NOT NULL,
- enrollment_date DATE DEFAULT 'CURRENT_DATE' NOT NULL
+ enrollment_date DATE DEFAULT CURRENT_DATE NOT NULL
 )INHERITS(person);
 ALTER TABLE student ADD CONSTRAINT PK_student PRIMARY KEY (person_id);
 
@@ -63,8 +64,8 @@ ALTER TABLE student ADD CONSTRAINT PK_student PRIMARY KEY (person_id);
 CREATE TABLE timeslot (
  slot_id SERIAL NOT NULL,
  slot_date DATE NOT NULL,
- start_time TIME(10) NOT NULL,
- end_time TIME(10) DEFAULT start_time +1 → end_time  NOT NULL
+ start_time TIME(0) NOT NULL,
+ end_time TIME(0) NOT NULL
 );
 ALTER TABLE timeslot ADD CONSTRAINT PK_timeslot PRIMARY KEY (slot_id);
 
@@ -75,7 +76,7 @@ CREATE TABLE contact_person (
  full_name VARCHAR(100) NOT NULL,
  relationship VARCHAR(20)
 );
-ALTER TABLE contact_person ADD CONSTRAINT PK_contact_person PRIMARY KEY (phone_number UNIQUE,person_id);
+ALTER TABLE contact_person ADD CONSTRAINT PK_contact_person PRIMARY KEY (phone_number,person_id);
 
 
 CREATE TABLE instructor (
@@ -96,7 +97,7 @@ ALTER TABLE instructor_timeslot ADD CONSTRAINT PK_instructor_timeslot PRIMARY KE
 CREATE TABLE instrument_rental (
  rental_id SERIAL NOT NULL,
  rental_start DATE DEFAULT CURRENT_DATE NOT NULL,
- rental_end DATE DEFAULT (rental_start + INTERVAL '12 months') NOT NULL,
+ rental_end DATE DEFAULT (CURRENT_DATE + INTERVAL '12 months') NOT NULL,,
  instrument_id SERIAL NOT NULL,
  person_id SERIAL NOT NULL
 );
