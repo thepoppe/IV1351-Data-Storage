@@ -97,7 +97,7 @@ ALTER TABLE instructor_timeslot ADD CONSTRAINT PK_instructor_timeslot PRIMARY KE
 CREATE TABLE instrument_rental (
  rental_id SERIAL NOT NULL,
  rental_start DATE DEFAULT CURRENT_DATE NOT NULL,
- rental_end DATE DEFAULT (CURRENT_DATE + INTERVAL '12 months') NOT NULL,,
+ rental_end DATE DEFAULT (CURRENT_DATE + INTERVAL '12 months') NOT NULL,
  instrument_id SERIAL NOT NULL,
  person_id SERIAL NOT NULL
 );
@@ -164,17 +164,15 @@ ALTER TABLE individual_lesson ADD CONSTRAINT PK_individual_lesson PRIMARY KEY (l
 
 
 --FK assigning
-ALTER TABLE person_address ADD CONSTRAINT FK_person_address_0 FOREIGN KEY (person_id) REFERENCES person (person_id);
-ALTER TABLE person_address ADD CONSTRAINT FK_person_address_1 FOREIGN KEY (address_id) REFERENCES address (id);
+--ALTER TABLE person_address ADD CONSTRAINT FK_person_address_0 FOREIGN KEY (person_id) REFERENCES person (person_id); --removed for functionality
+--ALTER TABLE person_address ADD CONSTRAINT FK_person_address_1 FOREIGN KEY (address_id) REFERENCES address (id); --removed for functionality
 
 
-ALTER TABLE student ADD CONSTRAINT FK_student_0 FOREIGN KEY (person_id) REFERENCES person (person_id);
 
 
 ALTER TABLE contact_person ADD CONSTRAINT FK_contact_person_0 FOREIGN KEY (person_id) REFERENCES student (person_id);
 
 
-ALTER TABLE instructor ADD CONSTRAINT FK_instructor_0 FOREIGN KEY (person_id) REFERENCES person (person_id);
 
 
 ALTER TABLE instructor_timeslot ADD CONSTRAINT FK_instructor_timeslot_0 FOREIGN KEY (person_id) REFERENCES instructor (person_id);
