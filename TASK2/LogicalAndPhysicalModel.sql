@@ -33,8 +33,7 @@ CREATE TABLE person_address (
 );
 --FKs dont allow polulation
 ALTER TABLE person_address
-DROP CONSTRAINT person_address_person_id_fkey,
-DROP CONSTRAINT person_address_address_id_fkey;
+DROP CONSTRAINT person_address_person_id_fkey;
 
 
 CREATE TABLE price_info (
@@ -81,11 +80,9 @@ CREATE TABLE contact_person (
     full_name VARCHAR(100) NOT NULL,
     relationship VARCHAR(20),
     CONSTRAINT PK_contact_person PRIMARY KEY (phone_number, person_id),
-    FOREIGN KEY (person_id) REFERENCES person(person_id)
+    FOREIGN KEY (person_id) REFERENCES student(person_id)
 );
---Temporary solution to fill database
-ALTER TABLE contact_person
-DROP CONSTRAINT contact_person_person_id_fkey;
+
 
 
 

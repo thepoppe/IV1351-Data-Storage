@@ -81,7 +81,7 @@ VALUES
 --map to teachers
 INSERT INTO instructor_timeslot (person_id, slot_id, is_available)
 VALUES
-  (currval('person_person_id_seq') - 4, currval('timeslot_slot_id_seq'), false),
+  (currval('person_person_id_seq') - 4, currval('timeslot_slot_id_seq'),    false),
   (currval('person_person_id_seq') - 3, currval('timeslot_slot_id_seq') - 1, false),
   (currval('person_person_id_seq') - 2, currval('timeslot_slot_id_seq') - 2, false),
   (currval('person_person_id_seq') - 1, currval('timeslot_slot_id_seq') - 3, false),
@@ -98,7 +98,6 @@ VALUES
 
 
   --create 5 ensembles
-  -- Scatter ensemble lessons over a 2-week period
 INSERT INTO timeslot (slot_date, start_time, end_time)
 VALUES
   ('2023-11-27', '09:00:00', '10:00:00'),

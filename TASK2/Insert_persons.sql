@@ -155,30 +155,3 @@ values
   (currval('person_person_id_seq') - 25,currval('person_person_id_seq') - 20, 'Sister'),
   (currval('person_person_id_seq') - 19,currval('person_person_id_seq') - 18, 'Brother');
 
-
-
-
---general insert for student with all new
-INSERT INTO student (person_number, first_name,last_name,phone_number,email_address)
-VALUES('personnumber','some_name','some_surname','some_phone1','some_email1');
-
-INSERT INTO address (street, zip, city)
-VALUES('some_street','zip','some_city');
-
-INSERT INTO person_address (person_id, address_id)
-VALUES (currval('person_person_id_seq'), currval('address_address_id_seq'));
-
-INSERT INTO contact_person (phone_number, person_id, full_name, relationship)
-VALUES  ('some_phone', currval('person_person_id_seq'), 'some_name', 'some_realtion');
-
-
-
---general insert with all new
-INSERT INTO instructor (person_number, first_name,last_name,phone_number,email_address)
-VALUES('personnumbe1','some_instructor_name','some_surname','some_phone2','some_email2');
-
-INSERT INTO address (street, zip, city)
-VALUES('some_street','zip','some_city');
-
-INSERT INTO person_address (person_id, address_id)
-VALUES (currval('person_person_id_seq'), currval('address_address_id_seq'));
