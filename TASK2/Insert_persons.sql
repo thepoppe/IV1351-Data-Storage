@@ -1,31 +1,31 @@
 --database fill
-INSERT INTO student (first_name,last_name,phone_number,email_address)
+INSERT INTO student (person_number, first_name, last_name, phone_number, email_address)
 VALUES
-  ('Darius','Spears','(039) 95442473','eget@aol.net'),
-  ('Hanae','Underwood','(034) 46128851','sed.hendrerit@hotmail.couk'),
-  ('Lyle','Swanson','(025) 89680521','quis.arcu@google.couk'),
-  ('Lee','Gay','(086) 38595576','tincidunt.nibh@icloud.couk'),
-  ('Mia','Johns','(015) 62565217','egestas.aliquam@protonmail.net'),
-  ('Dalton','Conrad','(028) 67937451','tempus@protonmail.net'),
-  ('Sigourney','Padilla','(058) 58215374','donec.est.mauris@outlook.edu'),
-  ('Aquila','Chase','(085) 05368894','est.mauris@google.org'),
-  ('Cruz','Thomas','(011) 61444871','nulla.in.tincidunt@aol.com'),
-  ('Maggie','Henson','(075) 51524806','pede.cras@outlook.net'),
-  ('Dominic','Villarreal','(076) 17516528','nisi.aenean@google.couk'),
-  ('Zahir','Weeks','(037) 51765035','sed.dictum@icloud.net'),
-  ('Trevor','Wheeler','(043) 15675326','orci@yahoo.org'),
-  ('Hunter','Mercer','(014) 78337484','non@google.edu'),
-  ('Signe','Henderson','(044) 82745555','odio.a@yahoo.org'),
-  ('Adria','Durham','(042) 45527324','risus.at.fringilla@hotmail.edu'),
-  ('Kato','Barrera','(082) 71648651','feugiat.lorem.ipsum@protonmail.ca'),
-  ('Wynter','Clarke','(041) 38760564','semper.nam@aol.couk'),
-  ('Colton','Vega','(012) 16995266','tincidunt.neque@hotmail.org'),
-  ('Gannon','Carlson','(075) 47384455','arcu.ac@aol.com'),
-  ('Colby','Avery','(022) 46456312','velit.justo@icloud.net'),
-  ('Rowan','Conley','(012) 24280032','id.enim@protonmail.org'),
-  ('Wayne','Mcclain','(024) 31507308','sed.molestie.sed@icloud.ca'),
-  ('Dean','Cantu','(059) 11691531','urna.suscipit@protonmail.edu'),
-  ('Keiko','Horn','(034) 55661255','sed.dolor@yahoo.com');
+  ('000000000001', 'Darius', 'Spears', '(039) 95442473', 'eget@aol.net'),
+  ('000000000002', 'Hanae', 'Underwood', '(034) 46128851', 'sed.hendrerit@hotmail.couk'),
+  ('000000000003', 'Lyle', 'Swanson', '(025) 89680521', 'quis.arcu@google.couk'),
+  ('000000000004', 'Lee', 'Gay', '(086) 38595576', 'tincidunt.nibh@icloud.couk'),
+  ('000000000005', 'Mia', 'Johns', '(015) 62565217', 'egestas.aliquam@protonmail.net'),
+  ('000000000006', 'Dalton', 'Conrad', '(028) 67937451', 'tempus@protonmail.net'),
+  ('000000000007', 'Sigourney', 'Padilla', '(058) 58215374', 'donec.est.mauris@outlook.edu'),
+  ('000000000008', 'Aquila', 'Chase', '(085) 05368894', 'est.mauris@google.org'),
+  ('000000000009', 'Cruz', 'Thomas', '(011) 61444871', 'nulla.in.tincidunt@aol.com'),
+  ('000000000010', 'Maggie', 'Henson', '(075) 51524806', 'pede.cras@outlook.net'),
+  ('000000000011', 'Dominic', 'Villarreal', '(076) 17516528', 'nisi.aenean@google.couk'),
+  ('000000000012', 'Zahir', 'Weeks', '(037) 51765035', 'sed.dictum@icloud.net'),
+  ('000000000013', 'Trevor', 'Wheeler', '(043) 15675326', 'orci@yahoo.org'),
+  ('000000000014', 'Hunter', 'Mercer', '(014) 78337484', 'non@google.edu'),
+  ('000000000015', 'Signe', 'Henderson', '(044) 82745555', 'odio.a@yahoo.org'),
+  ('000000000016', 'Adria', 'Durham', '(042) 45527324', 'risus.at.fringilla@hotmail.edu'),
+  ('000000000017', 'Kato', 'Barrera', '(082) 71648651', 'feugiat.lorem.ipsum@protonmail.ca'),
+  ('000000000018', 'Wynter', 'Clarke', '(041) 38760564', 'semper.nam@aol.couk'),
+  ('000000000019', 'Colton', 'Vega', '(012) 16995266', 'tincidunt.neque@hotmail.org'),
+  ('000000000020', 'Gannon', 'Carlson', '(075) 47384455', 'arcu.ac@aol.com'),
+  ('000000000021', 'Colby', 'Avery', '(022) 46456312', 'velit.justo@icloud.net'),
+  ('000000000022', 'Rowan', 'Conley', '(012) 24280032', 'id.enim@protonmail.org'),
+  ('000000000023', 'Wayne', 'Mcclain', '(024) 31507308', 'sed.molestie.sed@icloud.ca'),
+  ('000000000024', 'Dean', 'Cantu', '(059) 11691531', 'urna.suscipit@protonmail.edu'),
+  ('000000000025', 'Keiko', 'Horn', '(034) 55661255', 'sed.dolor@yahoo.com');
 
 INSERT INTO address (street, zip, city)
 VALUES
@@ -57,72 +57,74 @@ VALUES
 
 INSERT INTO person_address (person_id, address_id)
 VALUES
-  (101,151),
-  (102,152),
-  (103,153),
-  (104,154),
-  (105,155),
-  (106,156),
-  (107,157),
-  (108,158),
-  (109,159),
-  (110,160),
-  (111,161),
-  (112,162),
-  (113,163),
-  (114,164),
-  (115,165),
-  (116,166),
-  (117,167),
-  (118,168),
-  (119,169),
-  (120,170),
-  (121,171),
-  (122,172),
-  (123,173),
-  (124,174),
-  (125,175);
+  (currval('person_person_id_seq') - 24, currval('address_address_id_seq') - 24),
+  (currval('person_person_id_seq') - 23, currval('address_address_id_seq') - 23),
+  (currval('person_person_id_seq') - 22, currval('address_address_id_seq') - 22),
+  (currval('person_person_id_seq') - 21, currval('address_address_id_seq') - 21),
+  (currval('person_person_id_seq') - 20, currval('address_address_id_seq') - 20),
+  (currval('person_person_id_seq') - 19, currval('address_address_id_seq') - 19),
+  (currval('person_person_id_seq') - 18, currval('address_address_id_seq') - 18),
+  (currval('person_person_id_seq') - 17, currval('address_address_id_seq') - 17),
+  (currval('person_person_id_seq') - 16, currval('address_address_id_seq') - 16),
+  (currval('person_person_id_seq') - 15, currval('address_address_id_seq') - 15),
+  (currval('person_person_id_seq') - 14, currval('address_address_id_seq') - 14),
+  (currval('person_person_id_seq') - 13, currval('address_address_id_seq') - 13),
+  (currval('person_person_id_seq') - 12, currval('address_address_id_seq') - 12),
+  (currval('person_person_id_seq') - 11, currval('address_address_id_seq') - 11),
+  (currval('person_person_id_seq') - 10, currval('address_address_id_seq') - 10),
+  (currval('person_person_id_seq') - 9 , currval('address_address_id_seq') - 9),
+  (currval('person_person_id_seq') - 8 , currval('address_address_id_seq') - 8),
+  (currval('person_person_id_seq') - 7 , currval('address_address_id_seq') - 7),
+  (currval('person_person_id_seq') - 6 , currval('address_address_id_seq') - 6),
+  (currval('person_person_id_seq') - 5 , currval('address_address_id_seq') - 5),
+  (currval('person_person_id_seq') - 4 , currval('address_address_id_seq') - 4),
+  (currval('person_person_id_seq') - 3 , currval('address_address_id_seq') - 3),
+  (currval('person_person_id_seq') - 2 , currval('address_address_id_seq') - 2),
+  (currval('person_person_id_seq') - 1 , currval('address_address_id_seq') - 1),
+  (currval('person_person_id_seq')     , currval('address_address_id_seq') );
+
+
 
 
 
 INSERT INTO contact_person (phone_number, person_id, full_name, relationship)
 VALUES
-  ('(014) 24148510', 101, 'Jermaine Johns', 'Father'),
-  ('(021) 61378213', 102, 'Dane Collins', 'Mother'),
-  ('(068) 34946525', 103, 'Jolie Mcfadden', 'Friend'),
-  ('(044) 59391198', 104, 'Gage Baird', 'Sibling'),
-  ('(009) 60055371', 105, 'Fletcher Hoffman', 'Partner'),
-  ('(062) 46175515', 106, 'Macon Vasquez', 'Mother'),
-  ('(075) 81055743', 107, 'Xanthus Holder', 'Father'),
-  ('(037) 48145592', 108, 'Nash Huffman', 'Mother'),
-  ('(044) 91555557', 109, 'Xandra Briggs', 'Father'),
-  ('(016) 31615612', 110, 'Noel Buck', 'Sibling'),
-  ('(026) 66136522', 111, 'Zephania William', 'Friend'),
-  ('(017) 32913665', 112, 'Colby Benjamin', 'Mother'),
-  ('(038) 31376961', 113, 'Hiroko Sosa', 'Father'),
-  ('(068) 19529585', 114, 'Carson Cantrell', 'Sibling'),
-  ('(078) 08910564', 115, 'Deirdre Lawson', 'Friend'),
-  ('(086) 50774165', 116, 'Zenaida Navarro', 'Mother'),
-  ('(038) 59300209', 117, 'Diana O''connor', 'Father'),
-  ('(048) 79592646', 118, 'Chelsea Hawkins', 'Sibling'),
-  ('(064) 03938467', 119, 'Brady Palmer', 'Friend'),
-  ('(093) 37173680', 120, 'Ishmael Thomas', 'Mother'),
-  ('(014) 52471372', 121, 'Kylynn Dennis', 'Father'),
-  ('(082) 74976377', 122, 'Lance Carrillo', 'Sibling'),
-  ('(004) 85638014', 123, 'Jermaine Griffith', 'Friend'),
-  ('(051) 25067841', 124, 'Xavier Solis', 'Mother'),
-  ('(030) 73411218', 125, 'Hall Gardner', 'Father');
+  ('(014) 24148510', currval('person_person_id_seq') - 24, 'Jermaine Johns', 'Father'),
+  ('(021) 61378213', currval('person_person_id_seq') - 23, 'Dane Collins', 'Mother'),
+  ('(068) 34946525', currval('person_person_id_seq') - 22, 'Jolie Mcfadden', 'Friend'),
+  ('(044) 59391198', currval('person_person_id_seq') - 21, 'Gage Baird', 'Sibling'),
+  ('(009) 60055371', currval('person_person_id_seq') - 20, 'Fletcher Hoffman', 'Partner'),
+  ('(062) 46175515', currval('person_person_id_seq') - 19, 'Macon Vasquez', 'Mother'),
+  ('(075) 81055743', currval('person_person_id_seq') - 18, 'Xanthus Holder', 'Father'),
+  ('(037) 48145592', currval('person_person_id_seq') - 17, 'Nash Huffman', 'Mother'),
+  ('(044) 91555557', currval('person_person_id_seq') - 16, 'Xandra Briggs', 'Father'),
+  ('(016) 31615612', currval('person_person_id_seq') - 15, 'Noel Buck', 'Sibling'),
+  ('(026) 66136522', currval('person_person_id_seq') - 14, 'Zephania William', 'Friend'),
+  ('(017) 32913665', currval('person_person_id_seq') - 13, 'Colby Benjamin', 'Mother'),
+  ('(038) 31376961', currval('person_person_id_seq') - 12, 'Hiroko Sosa', 'Father'),
+  ('(068) 19529585', currval('person_person_id_seq') - 11, 'Carson Cantrell', 'Sibling'),
+  ('(078) 08910564', currval('person_person_id_seq') - 10, 'Deirdre Lawson', 'Friend'),
+  ('(086) 50774165', currval('person_person_id_seq') - 9 , 'Zenaida Navarro', 'Mother'),
+  ('(038) 59300209', currval('person_person_id_seq') - 8 , 'Diana O''connor', 'Father'),
+  ('(048) 79592646', currval('person_person_id_seq') - 7 , 'Chelsea Hawkins', 'Sibling'),
+  ('(064) 03938467', currval('person_person_id_seq') - 6 , 'Brady Palmer', 'Friend'),
+  ('(093) 37173680', currval('person_person_id_seq') - 5 , 'Ishmael Thomas', 'Mother'),
+  ('(014) 52471372', currval('person_person_id_seq') - 4 , 'Kylynn Dennis', 'Father'),
+  ('(082) 74976377', currval('person_person_id_seq') - 3 , 'Lance Carrillo', 'Sibling'),
+  ('(004) 85638014', currval('person_person_id_seq') - 2 , 'Jermaine Griffith', 'Friend'),
+  ('(051) 25067841', currval('person_person_id_seq') - 1 , 'Xavier Solis', 'Mother'),
+  ('(030) 73411218', currval('person_person_id_seq')     , 'Hall Gardner', 'Father');
 
 
 
 -- Insert data for 5 instructors
 INSERT INTO instructor (person_number, first_name, last_name, phone_number, email_address)
 VALUES
-  ('IN001', 'John', 'Doe', '(011) 11111111', 'john.doe@example.com'),
-  ('IN002', 'Jane', 'Smith', '(022) 22222222', 'jane.smith@example.com'),
-  ('IN003', 'Robert', 'Johnson', '(033) 33333333', 'robert.johnson@example.com'),
-  ('IN004', 'Emily', 'Jones', '(044) 44444444', 'emily.jones@example.com'),
-  ('IN005', 'David', 'Davis', '(055) 55555555', 'david.davis@example.com');
+  ('IN0000000001', 'John', 'Doe', '(011) 11111111', 'john.doe@example.com'),
+  ('IN0000000002', 'Jane', 'Smith', '(022) 22222222', 'jane.smith@example.com'),
+  ('IN0000000003', 'Robert', 'Johnson', '(033) 33333333', 'robert.johnson@example.com'),
+  ('IN0000000004', 'Emily', 'Jones', '(044) 44444444', 'emily.jones@example.com'),
+  ('IN0000000005', 'David', 'Davis', '(055) 55555555', 'david.davis@example.com');
 
 -- Insert data for 5 addresses
 INSERT INTO address (street, zip, city)
@@ -136,37 +138,35 @@ VALUES
 -- Link instructors to addresses
 INSERT INTO person_address (person_id, address_id)
 VALUES
-  (26, 26), -- John Doe
-  (27, 27), -- Jane Smith
-  (28, 28), -- Robert Johnson
-  (29, 29), -- Emily Jones
-  (30, 30); -- David Davis;
-
+  (currval('person_person_id_seq') - 4 , currval('address_address_id_seq') - 4),
+  (currval('person_person_id_seq') - 3 , currval('address_address_id_seq') - 3),
+  (currval('person_person_id_seq') - 2 , currval('address_address_id_seq') - 2),
+  (currval('person_person_id_seq') - 1 , currval('address_address_id_seq') - 1),
+  (currval('person_person_id_seq')     , currval('address_address_id_seq') );
 
 
 
 --adding sibling
 insert into sibling(person_id,sibling_id,relation_type)
 values 
-  (101,102, 'Brother'),
-  (101,103, 'Sister'),
-  (105,110, 'Sister'),
-  (111,112, 'Sister'),
-  (124,125, 'Brother');
+  (currval('person_person_id_seq') - 29,currval('person_person_id_seq') - 28, 'Brother'),
+  (currval('person_person_id_seq') - 29,currval('person_person_id_seq') - 27, 'Sister'),
+  (currval('person_person_id_seq') - 28,currval('person_person_id_seq') - 28, 'Sister'),
+  (currval('person_person_id_seq') - 25,currval('person_person_id_seq') - 20, 'Sister'),
+  (currval('person_person_id_seq') - 19,currval('person_person_id_seq') - 18, 'Brother');
 
-insert into sibling(person_id,sibling_id)
-values(102,103);
+
 
 
 --general insert for student with all new
 INSERT INTO student (person_number, first_name,last_name,phone_number,email_address)
-VALUES('personnumber','some_name','some_surname','some_phone','some_email');
+VALUES('personnumber','some_name','some_surname','some_phone1','some_email1');
 
 INSERT INTO address (street, zip, city)
 VALUES('some_street','zip','some_city');
 
 INSERT INTO person_address (person_id, address_id)
-VALUES (currval('person_person_id_seq'), currval('address_id_seq'));
+VALUES (currval('person_person_id_seq'), currval('address_address_id_seq'));
 
 INSERT INTO contact_person (phone_number, person_id, full_name, relationship)
 VALUES  ('some_phone', currval('person_person_id_seq'), 'some_name', 'some_realtion');
@@ -174,11 +174,11 @@ VALUES  ('some_phone', currval('person_person_id_seq'), 'some_name', 'some_realt
 
 
 --general insert with all new
-INSERT INTO student (person_number, first_name,last_name,phone_number,email_address)
-VALUES('personnumber','some_instructor_name','some_surname','some_phone','some_email');
+INSERT INTO instructor (person_number, first_name,last_name,phone_number,email_address)
+VALUES('personnumbe1','some_instructor_name','some_surname','some_phone2','some_email2');
 
 INSERT INTO address (street, zip, city)
 VALUES('some_street','zip','some_city');
 
 INSERT INTO person_address (person_id, address_id)
-VALUES (currval('person_person_id_seq'), currval('address_id_seq'));
+VALUES (currval('person_person_id_seq'), currval('address_address_id_seq'));

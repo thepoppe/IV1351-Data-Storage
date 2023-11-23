@@ -16,11 +16,11 @@ CREATE TABLE address (
 
 CREATE TABLE person (
  person_id SERIAL PRIMARY KEY,
- person_number VARCHAR(12) UNIQUE, --global unique trigger
+ person_number CHAR(12) UNIQUE NOT NULL, 
  first_name VARCHAR(100) NOT NULL,
  last_name VARCHAR(100) NOT NULL,
- phone_number VARCHAR(20) UNIQUE NOT NULL, --global unique trigger
- email_address VARCHAR(100) UNIQUE NOT NULL --global unique trigger
+ phone_number VARCHAR(20) UNIQUE NOT NULL, --global unique trigger possibly needed
+ email_address VARCHAR(100) UNIQUE NOT NULL --global unique trigger possibly needed
 );
 
 
@@ -31,6 +31,10 @@ CREATE TABLE person_address (
     FOREIGN KEY (person_id) REFERENCES person(person_id),
     FOREIGN KEY (address_id) REFERENCES address(address_id)
 );
+--FKs dont allow polulation
+ALTER TABLE person_address
+DROP CONSTRAINT person_address_person_id_fkey,
+DROP CONSTRAINT person_address_address_id_fkey;
 
 
 CREATE TABLE price_info (
@@ -46,10 +50,11 @@ CREATE TABLE price_info (
 
 CREATE TABLE instrument (
  instrument_id SERIAL PRIMARY KEY,
- instrument instrument_type NOT NULL,
+ instrument_type instrument_type NOT NULL,
  brand VARCHAR(100),
  price VARCHAR(10) NOT NULL,
- quantity_in_stock VARCHAR(10) NOT NULL
+ quantity_in_stock INTEGER,
+ description VARCHAR(500)
 );
 
 
@@ -78,6 +83,10 @@ CREATE TABLE contact_person (
     CONSTRAINT PK_contact_person PRIMARY KEY (phone_number, person_id),
     FOREIGN KEY (person_id) REFERENCES person(person_id)
 );
+--Temporary solution to fill database
+ALTER TABLE contact_person
+DROP CONSTRAINT contact_person_person_id_fkey;
+
 
 
 CREATE TABLE instructor (
@@ -101,7 +110,7 @@ CREATE TABLE instrument_rental (
     rental_start DATE DEFAULT CURRENT_DATE NOT NULL,
     rental_end DATE DEFAULT (CURRENT_DATE + INTERVAL '12 months') NOT NULL,
     instrument_id INTEGER NOT NULL,
-    person_id SERIAL NOT NULL,
+    person_id Integer NOT NULL,
     FOREIGN KEY (instrument_id) REFERENCES instrument (instrument_id),
     FOREIGN KEY (person_id) REFERENCES student (person_id)
 );
@@ -120,13 +129,17 @@ CREATE TABLE lesson (
 
 
 
-CREATE TABLE lesson_student (
-    person_id SERIAL NOT NULL,
-    lesson_id SERIAL NOT NULL,
+CREATE TABLE student_lesson (
+    person_id INTEGER NOT NULL,
+    lesson_id INTEGER NOT NULL,
     CONSTRAINT PK_lesson_student PRIMARY KEY (person_id, lesson_id),
     FOREIGN KEY (person_id) REFERENCES student (person_id),
     FOREIGN KEY (lesson_id) REFERENCES lesson (lesson_id)
 );
+--FKs dont allow polulation
+ALTER TABLE student_lesson
+DROP CONSTRAINT student_lesson_person_id_fkey,
+DROP CONSTRAINT student_lesson_lesson_id_fkey;
 
 
 

@@ -17,15 +17,16 @@ VALUES
 --add available times
 INSERT INTO instructor_timeslot(person_id, slot_id)
 VALUES
-    (126,1),
-    (126,2),
-    (126,3),
-    (127,1),
-    (128,5),
-    (128,6),
-    (130,1),
-    (130,9),
-    (130,10);
+    (currval('person_person_id_seq') - 4,1),
+    (currval('person_person_id_seq') - 4,2),
+    (currval('person_person_id_seq') - 4,3),
+    (currval('person_person_id_seq') - 3,1),
+    (currval('person_person_id_seq')    ,5),
+    (currval('person_person_id_seq') - 1,6),
+    (currval('person_person_id_seq') - 3,1),
+    (currval('person_person_id_seq') - 2,9),
+    (currval('person_person_id_seq') - 1,10),
+    (currval('person_person_id_seq')    ,10);
 
 --create price information table
 INSERT INTO price_info (lesson_type, base_price, lesson_level, starting_date)
@@ -45,18 +46,26 @@ VALUES
 --assign individual lessons can use a transaction for this??
 INSERT INTO individual_lesson (price_info_id, instructor_timeslot_id, instrument)
 VALUES
-    (1, 1, 'Guitar'),
-    (2, 2, 'Piano'),
-    (3, 1, 'Violin'),
-    (1, 5, 'Drums'),
-    (2, 6, 'Guitar'),
-    (3, 1, 'Piano'),
-    (1, 9, 'Violin');
+    (1, currval('instructor_timeslot_instructor_timeslot_id_seq') -6, 'Guitar'),
+    (2, currval('instructor_timeslot_instructor_timeslot_id_seq') -5, 'Piano'),
+    (3, currval('instructor_timeslot_instructor_timeslot_id_seq') -4, 'Violin'),
+    (1, currval('instructor_timeslot_instructor_timeslot_id_seq') -3, 'Drums'),
+    (2, currval('instructor_timeslot_instructor_timeslot_id_seq') -2, 'Guitar'),
+    (3, currval('instructor_timeslot_instructor_timeslot_id_seq') -1, 'Piano'),
+    (1, currval('instructor_timeslot_instructor_timeslot_id_seq') -0, 'Violin');
 -- set is_available = false
 UPDATE instructor_timeslot
 SET is_available = false
-WHERE (instructor_timeslot_id,) 
-IN ( 1, 2, 1, 5, 6, 1, 9);
+WHERE (instructor_timeslot_id) 
+IN ( 
+currval('instructor_timeslot_instructor_timeslot_id_seq') -6,
+currval('instructor_timeslot_instructor_timeslot_id_seq') -5,
+currval('instructor_timeslot_instructor_timeslot_id_seq') -4,
+currval('instructor_timeslot_instructor_timeslot_id_seq') -3,
+currval('instructor_timeslot_instructor_timeslot_id_seq') -2,
+currval('instructor_timeslot_instructor_timeslot_id_seq') -1,
+currval('instructor_timeslot_instructor_timeslot_id_seq') -0
+);
 
 
 
@@ -72,11 +81,11 @@ VALUES
 --map to teachers
 INSERT INTO instructor_timeslot (person_id, slot_id, is_available)
 VALUES
-  (126, currval('timeslot_slot_id_seq'), false),
-  (127, currval('timeslot_slot_id_seq') - 1, false),
-  (128, currval('timeslot_slot_id_seq') - 2, false),
-  (129, currval('timeslot_slot_id_seq') - 3, false),
-  (130, currval('timeslot_slot_id_seq') - 4, false);
+  (currval('person_person_id_seq') - 4, currval('timeslot_slot_id_seq'), false),
+  (currval('person_person_id_seq') - 3, currval('timeslot_slot_id_seq') - 1, false),
+  (currval('person_person_id_seq') - 2, currval('timeslot_slot_id_seq') - 2, false),
+  (currval('person_person_id_seq') - 1, currval('timeslot_slot_id_seq') - 3, false),
+  (currval('person_person_id_seq')    , currval('timeslot_slot_id_seq') - 4, false);
 --map to lessons
 INSERT INTO group_lesson (price_info_id, instructor_timeslot_id, room, instrument, minimum_students)
 VALUES
@@ -106,16 +115,16 @@ VALUES
 -- Map timeslots to teachers
 INSERT INTO instructor_timeslot (person_id, slot_id, is_available)
 VALUES
-  (6, currval('timeslot_slot_id_seq')    , false),
-  (7, currval('timeslot_slot_id_seq') - 1, false),
-  (8, currval('timeslot_slot_id_seq') - 2, false),
-  (9, currval('timeslot_slot_id_seq') - 3, false),
-  (10,currval('timeslot_slot_id_seq') - 4, false),
-  (6, currval('timeslot_slot_id_seq') - 5, false),
-  (7, currval('timeslot_slot_id_seq') - 6, false),
-  (8, currval('timeslot_slot_id_seq') - 7, false),
-  (9, currval('timeslot_slot_id_seq') - 8, false),
-  (10,currval('timeslot_slot_id_seq') - 9, false);
+  (currval('person_person_id_seq') - 4, currval('timeslot_slot_id_seq')    , false),
+  (currval('person_person_id_seq') - 3, currval('timeslot_slot_id_seq') - 1, false),
+  (currval('person_person_id_seq') - 2, currval('timeslot_slot_id_seq') - 2, false),
+  (currval('person_person_id_seq') - 1, currval('timeslot_slot_id_seq') - 3, false),
+  (currval('person_person_id_seq')    ,currval('timeslot_slot_id_seq') - 4, false),
+  (currval('person_person_id_seq') - 4, currval('timeslot_slot_id_seq') - 5, false),
+  (currval('person_person_id_seq') - 3, currval('timeslot_slot_id_seq') - 6, false),
+  (currval('person_person_id_seq') - 2, currval('timeslot_slot_id_seq') - 7, false),
+  (currval('person_person_id_seq') - 1, currval('timeslot_slot_id_seq') - 8, false),
+  (currval('person_person_id_seq')    ,currval('timeslot_slot_id_seq') - 9, false);
 
 -- Map ensemble lessons
 INSERT INTO ensemble (price_info_id, instructor_timeslot_id, room, minimum_students, maximum_students, target_genre)
@@ -132,6 +141,29 @@ VALUES
   (7, currval('instructor_timeslot_instructor_timeslot_id_seq') - 9, 'RoomE', '4', '8', 'Pop');
 
 
+--map students to lessons
+INSERT INTO student_lesson (person_id, lesson_id)
+VALUES
+  (currval('person_person_id_seq') - 24, 1),
+  (currval('person_person_id_seq') - 23, 2),
+  (currval('person_person_id_seq') - 22, 3),
+  (currval('person_person_id_seq') - 21, 4),
+  (currval('person_person_id_seq') - 20, 5),
+  (currval('person_person_id_seq') - 19, 6),
+  (currval('person_person_id_seq') - 18, 7),
+  (currval('person_person_id_seq') - 17, 8),
+  (currval('person_person_id_seq') - 16, 9),
+  (currval('person_person_id_seq') - 15, 10),
+  (currval('person_person_id_seq') - 29, 11),
+  (currval('person_person_id_seq') - 28, 12),
+  (currval('person_person_id_seq') - 22, 13),
+  (currval('person_person_id_seq') - 21, 14),
+  (currval('person_person_id_seq') - 20, 15),
+  (currval('person_person_id_seq') - 19, 10),
+  (currval('person_person_id_seq') - 18, 11),
+  (currval('person_person_id_seq') - 17, 12),
+  (currval('person_person_id_seq') - 16, 13),
+  (currval('person_person_id_seq') - 15, 14);
 
 
 
