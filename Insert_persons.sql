@@ -57,60 +57,61 @@ VALUES
 
 INSERT INTO person_address (person_id, address_id)
 VALUES
-  (1, 1),
-  (2, 2),
-  (3, 3),
-  (4, 4),
-  (5, 5),
-  (6, 6),
-  (7, 7),
-  (8, 8),
-  (9, 9),
-  (10, 10),
-  (11, 11),
-  (12, 12),
-  (13, 13),
-  (14, 14),
-  (15, 15),
-  (16, 16),
-  (17, 17),
-  (18, 18),
-  (19, 19),
-  (20, 20),
-  (21, 21),
-  (22, 22),
-  (23, 23),
-  (24, 24),
-  (25, 25);
+  (101,151),
+  (102,152),
+  (103,153),
+  (104,154),
+  (105,155),
+  (106,156),
+  (107,157),
+  (108,158),
+  (109,159),
+  (110,160),
+  (111,161),
+  (112,162),
+  (113,163),
+  (114,164),
+  (115,165),
+  (116,166),
+  (117,167),
+  (118,168),
+  (119,169),
+  (120,170),
+  (121,171),
+  (122,172),
+  (123,173),
+  (124,174),
+  (125,175);
+
 
 
 INSERT INTO contact_person (phone_number, person_id, full_name, relationship)
 VALUES
-  ('(014) 24148510', 1, 'Jermaine Johns', 'Father'),
-  ('(021) 61378213', 2, 'Dane Collins', 'Mother'),
-  ('(068) 34946525', 3, 'Jolie Mcfadden', 'Friend'),
-  ('(044) 59391198', 4, 'Gage Baird', 'Sibling'),
-  ('(009) 60055371', 5, 'Fletcher Hoffman', 'Partner'),
-  ('(062) 46175515', 6, 'Macon Vasquez', 'Mother'),
-  ('(075) 81055743', 7, 'Xanthus Holder', 'Father'),
-  ('(037) 48145592', 8, 'Nash Huffman', 'Mother'),
-  ('(044) 91555557', 9, 'Xandra Briggs', 'Father'),
-  ('(016) 31615612', 10, 'Noel Buck', 'Sibling'),
-  ('(026) 66136522', 11, 'Zephania William', 'Friend'),
-  ('(017) 32913665', 12, 'Colby Benjamin', 'Mother'),
-  ('(038) 31376961', 13, 'Hiroko Sosa', 'Father'),
-  ('(068) 19529585', 14, 'Carson Cantrell', 'Sibling'),
-  ('(078) 08910564', 15, 'Deirdre Lawson', 'Friend'),
-  ('(086) 50774165', 16, 'Zenaida Navarro', 'Mother'),
-  ('(038) 59300209', 17, 'Diana O''connor', 'Father'),
-  ('(048) 79592646', 18, 'Chelsea Hawkins', 'Sibling'),
-  ('(064) 03938467', 19, 'Brady Palmer', 'Friend'),
-  ('(093) 37173680', 20, 'Ishmael Thomas', 'Mother'),
-  ('(014) 52471372', 21, 'Kylynn Dennis', 'Father'),
-  ('(082) 74976377', 22, 'Lance Carrillo', 'Sibling'),
-  ('(004) 85638014', 23, 'Jermaine Griffith', 'Friend'),
-  ('(051) 25067841', 24, 'Xavier Solis', 'Mother'),
-  ('(030) 73411218', 25, 'Hall Gardner', 'Father');
+  ('(014) 24148510', 101, 'Jermaine Johns', 'Father'),
+  ('(021) 61378213', 102, 'Dane Collins', 'Mother'),
+  ('(068) 34946525', 103, 'Jolie Mcfadden', 'Friend'),
+  ('(044) 59391198', 104, 'Gage Baird', 'Sibling'),
+  ('(009) 60055371', 105, 'Fletcher Hoffman', 'Partner'),
+  ('(062) 46175515', 106, 'Macon Vasquez', 'Mother'),
+  ('(075) 81055743', 107, 'Xanthus Holder', 'Father'),
+  ('(037) 48145592', 108, 'Nash Huffman', 'Mother'),
+  ('(044) 91555557', 109, 'Xandra Briggs', 'Father'),
+  ('(016) 31615612', 110, 'Noel Buck', 'Sibling'),
+  ('(026) 66136522', 111, 'Zephania William', 'Friend'),
+  ('(017) 32913665', 112, 'Colby Benjamin', 'Mother'),
+  ('(038) 31376961', 113, 'Hiroko Sosa', 'Father'),
+  ('(068) 19529585', 114, 'Carson Cantrell', 'Sibling'),
+  ('(078) 08910564', 115, 'Deirdre Lawson', 'Friend'),
+  ('(086) 50774165', 116, 'Zenaida Navarro', 'Mother'),
+  ('(038) 59300209', 117, 'Diana O''connor', 'Father'),
+  ('(048) 79592646', 118, 'Chelsea Hawkins', 'Sibling'),
+  ('(064) 03938467', 119, 'Brady Palmer', 'Friend'),
+  ('(093) 37173680', 120, 'Ishmael Thomas', 'Mother'),
+  ('(014) 52471372', 121, 'Kylynn Dennis', 'Father'),
+  ('(082) 74976377', 122, 'Lance Carrillo', 'Sibling'),
+  ('(004) 85638014', 123, 'Jermaine Griffith', 'Friend'),
+  ('(051) 25067841', 124, 'Xavier Solis', 'Mother'),
+  ('(030) 73411218', 125, 'Hall Gardner', 'Father');
 
 
 
@@ -147,14 +148,14 @@ VALUES
 --adding sibling
 insert into sibling(person_id,sibling_id,relation_type)
 values 
-  (1,2, 'Brother'),
-  (1,3, 'Sister'),
-  (5,10, 'Sister'),
-  (11,12, 'Sister'),
-  (24,25, 'Brother');
+  (101,102, 'Brother'),
+  (101,103, 'Sister'),
+  (105,110, 'Sister'),
+  (111,112, 'Sister'),
+  (124,125, 'Brother');
 
 insert into sibling(person_id,sibling_id)
-value(2,3);
+values(102,103);
 
 
 --general insert for student with all new
