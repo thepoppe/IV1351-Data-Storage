@@ -28,8 +28,8 @@ CREATE TABLE person_address (
     person_address_id SERIAL PRIMARY KEY,
     person_id Integer NOT NULL,
     address_id INteger NOT NULL,
-    FOREIGN KEY (person_id) REFERENCES person(person_id),
-    FOREIGN KEY (address_id) REFERENCES address(address_id)
+    FOREIGN KEY (person_id) REFERENCES person(person_id) on delete cascade,
+    FOREIGN KEY (address_id) REFERENCES address(address_id) on delete cascade
 );
 --FKs dont allow polulation
 ALTER TABLE person_address
@@ -80,7 +80,7 @@ CREATE TABLE contact_person (
     full_name VARCHAR(100) NOT NULL,
     relationship VARCHAR(20),
     CONSTRAINT PK_contact_person PRIMARY KEY (phone_number, person_id),
-    FOREIGN KEY (person_id) REFERENCES student(person_id)
+    FOREIGN KEY (person_id) REFERENCES student(person_id) on delete cascade
 );
 
 
@@ -97,8 +97,8 @@ CREATE TABLE instructor_timeslot (
     person_id INTEGER NOT NULL,
     slot_id INTEGER NOT NULL,
     is_available BOOLEAN DEFAULT TRUE NOT NULL,
-    FOREIGN KEY (person_id) REFERENCES instructor (person_id),
-    FOREIGN KEY (slot_id) REFERENCES timeslot (slot_id)
+    FOREIGN KEY (person_id) REFERENCES instructor (person_id) on delete cascade,
+    FOREIGN KEY (slot_id) REFERENCES timeslot (slot_id) on delete cascade
 );
 
 
@@ -108,10 +108,9 @@ CREATE TABLE instrument_rental (
     rental_end DATE DEFAULT (CURRENT_DATE + INTERVAL '12 months') NOT NULL,
     instrument_id INTEGER NOT NULL,
     person_id Integer NOT NULL,
-    FOREIGN KEY (instrument_id) REFERENCES instrument (instrument_id),
-    FOREIGN KEY (person_id) REFERENCES student (person_id)
+    FOREIGN KEY (instrument_id) REFERENCES instrument (instrument_id) on delete cascade,
+    FOREIGN KEY (person_id) REFERENCES student (person_id) on delete cascade
 );
-
 
 
 
@@ -120,8 +119,8 @@ CREATE TABLE lesson (
     price_info_id INTEGER NOT NULL,
     instructor_timeslot_id INTEGER NOT NULL,
     room VARCHAR(20),
-    FOREIGN KEY (price_info_id) REFERENCES price_info (price_info_id),
-    FOREIGN KEY (instructor_timeslot_id) REFERENCES instructor_timeslot (instructor_timeslot_id)
+    FOREIGN KEY (price_info_id) REFERENCES price_info (price_info_id) on delete cascade,
+    FOREIGN KEY (instructor_timeslot_id) REFERENCES instructor_timeslot (instructor_timeslot_id) on delete cascade
 );
 
 
@@ -130,8 +129,8 @@ CREATE TABLE student_lesson (
     person_id INTEGER NOT NULL,
     lesson_id INTEGER NOT NULL,
     CONSTRAINT PK_lesson_student PRIMARY KEY (person_id, lesson_id),
-    FOREIGN KEY (person_id) REFERENCES student (person_id),
-    FOREIGN KEY (lesson_id) REFERENCES lesson (lesson_id)
+    FOREIGN KEY (person_id) REFERENCES student (person_id) on delete cascade,
+    FOREIGN KEY (lesson_id) REFERENCES lesson (lesson_id) on delete cascade
 );
 --FKs dont allow polulation
 ALTER TABLE student_lesson
@@ -147,8 +146,9 @@ CREATE TABLE sibling (
  sibling_id INTEGER NOT NULL,
  relation_type VARCHAR(10),
  CONSTRAINT PK_sibling PRIMARY KEY (person_id,sibling_id),
- FOREIGN KEY (person_id) REFERENCES student (person_id),
- FOREIGN KEY (sibling_id) REFERENCES student (person_id)
+ CHECK (person_id <> sibling_id), --added to prevent duplicates
+ FOREIGN KEY (person_id) REFERENCES student (person_id) on delete cascade,
+ FOREIGN KEY (sibling_id) REFERENCES student (person_id) on delete cascade
 );
 
 
