@@ -1,0 +1,70 @@
+Normalisation.
+
+How the create the schema.
+
+ fördelar att dela upp datan.
+
+
+1 REdundancy -  samma infromation på flera ställen
+2 Anamolies - abnormal behaviour when OInsert, Update m DEtete. WEird/hard for a
+
+
+Normalisation.
+
+Decompose then Verify no loss property. 
+
+Normal form easy?
+
+
+
+Functionala Dependecies. Who chooses the dependencies? a bit unclear the designer?
+2 attribute X and Y 
+
+closure
+verkar vara det som kan genereras från ett visst start se.
+
+Armstrongs axioms ?
+{Reflexiv 	- i know what i know 
+ Augmentation 	- X->Y => XZ -> YZ
+ transitiv	- x->Y, Y->Z    => X->Z
+}
+
+K is a superkey in R
+
+
+
+Cover.  ??
+
+
+Canonical cover?? the minimal set out database needs.
+
+alg.
+1 Bring every FD to canonical form ( decompisition only one attribute on rightside ) 
+2 remove redundant attrightbutes on left isde
+3 remove redundatn FDs
+
+
+schema FDs => 1st Normal form => 2nd Normal forms => 3rd Normal form
+
+
+1st NOrmal = alla atrtribute har ett värde
+
+
+2nd Normal = fattar ej,  candidate keys? kan man splitta mer? strict key dependencies
+	left side. split the tables that van be derived from the
+	key dependencies. ( individual parts of the combined key i thikn ) 
+
+3NF = "non prime attributes Y are defined by a cindiate key X -> Y E F+ => Z is a candidate"
+	transitive, we split again with non prime.
+	transitive on non keys
+
+
+
+
+
+
+
+
+
+
+

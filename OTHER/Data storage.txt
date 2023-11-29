@@ -1,0 +1,120 @@
+Data storage
+
+
+databases now a days are manily using "disk" as storage. 
+Storage manager - maintains the files in the database
+Buffer manager - the middleman between disk and cpu
+
+
+volatile : cpu register, cpu cache, dram (mainmemory)
+non-volatile : SSD ,HDD, Network/Optical, magnetic tape
+from fast to slow.
+
+
+primary storage - active processing layer
+secondary storage - persistance layer
+perpetual storage - long term storage ???????????
+
+
+HDD - 
+consists of small magnets that are flipped to represent 0/1.
+Read/writes a block from a sector. Important to group related data in sector. "We dont care when programmming but knows tha the block size"
+1 block is usuall 1-8 sectors and each sector is 1-8KB
+
+accesscost - 
+	signal from cpu to controller.
+	seek time: moving the harddisk head to the right spot
+	rotation time: time for the sector to appear under the head
+	data transfer: ~1 ms for 32kb stock
+	overall: ~15-35 ms per block
+
+HOW TO MMINIMIZE.
+exploit the fact that HDD reads sequential. Try to get all data in one spin from the disk.
+
+
+
+#3 writes
+
+using a  log disk to store directly then sort the datat and write it to the correct disk. write to ssd, then write to the HDD
+
+Mirroring shadowing:
+writes to two disks reads from the fastest.
+also known as RAID. 
+Stripping - shuffles data into different disk. => read faster since we can read from multiple disks at once. FETCH info parallell.
+
+
+
+RAID - multiple disk can be connected to RAID controller.
+	gives illusion that theres only 1 harddisk.
+
+Raid0 	:block stripping 2x speed on sequential reads
+Raid1 	:blocl mirroring/shadowing, store data on 2 disk. more reliable.
+Raid0+1 :block stripping and mirroring. faster and reliable.
+Raid5 	: can readu parallell from 4 disks. parityblock????
+
+
+	
+
+SUMMARY HDD - 
+	Pros: 
+	cheap per volume.
+	
+	cons:
+	hardware failure
+	"mean time before failure" - assigned by the manufacteur.
+	if using multiple disks the MTBF decreases.
+
+
+
+
+Buffer management - 
+	pages ~ block.
+	fetches pages/blcoks from disk to a buffer memory.
+
+	page table, keeps track of the current reads.
+	pin-count = we are accessing that page
+	dirty-bit = set to 1 when application updates, have to be written to disk
+
+strategies:
+	Least recently used:  remove the page that havent been used that doesnt have pin count
+	Clock: cycles the pages reduces the count and when count is 0 its removed.
+sequential floooding- when we need a lot of pages and only need to access them ones.
+	FIFO- first in first out. 
+	Toss immediate - ???? not LRU
+	expected reuse - keeps track of how mnay times something is accessed. removes the least popular.
+	
+	
+	
+	
+
+
+Types of ways to store: 
+	
+slotted page array is mostly used. we store header and references from start to right and the actual data from the end to the left. When slot and tuple meed the page is full.
+
+unspanned- no overflow of records/tuples
+spanned- records can span multiple pages with references.
+
+BLOB/CLOB tells that overflow page is needed-
+
+
+
+LOG structured array?  
+
+
+
+Heap files, randomly placed in, sortered files - clustered indexes.
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
