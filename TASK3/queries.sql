@@ -1,30 +1,35 @@
 --query 1 display all lessons
 SELECT
-    TO_CHAR (t.slot_date, 'YYYY-MM') AS month,
-    COUNT(*) AS total_lessons,
+    TO_CHAR(timeslot.slot_date, 'Month') AS MONTH,
+    COUNT(*) AS total,
     COUNT(*) FILTER (
         WHERE
-            pi.lesson_type = 'Individual'
-    ) AS individual_lessons,
+            info.lesson_type = 'Individual'
+    ) AS Individual,
     COUNT(*) FILTER (
         WHERE
-            pi.lesson_type = 'Group'
-    ) AS group_lessons,
+            info.lesson_type = 'Group'
+    ) AS GROUP,
     COUNT(*) FILTER (
         WHERE
-            pi.lesson_type = 'Ensemble'
-    ) AS ensemble_lessons
+            info.lesson_type = 'Ensemble'
+    ) AS Ensemble
 FROM
-    lesson l
-    JOIN price_info pi ON l.price_info_id = pi.price_info_id
-    JOIN instructor_timeslot it ON l.instructor_timeslot_id = it.slot_id
-    JOIN timeslot t ON it.slot_id = t.slot_id
+    lesson
+    INNER JOIN price_info AS info ON lesson.price_info_id = info.price_info_id
+    INNER JOIN instructor_timeslot AS instr_time ON lesson.instructor_timeslot_id = instr_time.slot_id
+    INNER JOIN timeslot ON instr_time.slot_id = timeslot.slot_id
 WHERE
-    DATE_PART ('YEAR', t.slot_date) = 2023
+    EXTRACT(
+        YEAR
+        FROM
+            timeslot.slot_date
+    ) = 2023
 GROUP BY
-    TO_CHAR (t.slot_date, 'YYYY-MM')
+    TO_CHAR(timeslot.slot_date, 'Month')
 ORDER BY
-    TO_CHAR (t.slot_date, 'YYYY-MM');
+    TO_CHAR(timeslot.slot_date, 'Month');
+
 
 --query 2
 SELECT
@@ -33,64 +38,68 @@ SELECT
 FROM
     (
         SELECT
-            stu.person_id,
+            student.person_id,
             CASE
-                WHEN COUNT(sib.person_id) = 0 THEN '0'
-                WHEN COUNT(sib.person_id) = 1 THEN '1'
-                WHEN COUNT(sib.person_id) = 2 THEN '2'
+                WHEN COUNT(sibling.person_id) = 0 THEN '0'
+                WHEN COUNT(sibling.person_id) = 1 THEN '1'
+                WHEN COUNT(sibling.person_id) = 2 THEN '2'
             END AS number_of_siblings
         FROM
-            student AS stu
-            LEFT JOIN sibling AS sib ON stu.person_id = sib.person_id
+            student
+            LEFT JOIN sibling ON student.person_id = sibling.person_id
         GROUP BY
-            stu.person_id
-    ) AS subquery
+            student.person_id
+    )
 GROUP BY
     number_of_siblings
 ORDER BY
     number_of_siblings;
 
+
 --query 3
 SELECT
-    it.person_id as "Instructor ID",
-    ins.first_name as "First Name",
-    ins.last_name as "Last Name",
-    count(it.person_id) as "Number of Lessons"
-from
-    lesson as l
-    left join instructor_timeslot as it on l.instructor_timeslot_id = it.instructor_timeslot_id
-    inner join instructor as ins on ins.person_id = it.person_id
-    left join timeslot as ts on ts.slot_id = it.slot_id
+    instr_time.person_id AS "Instructor ID",
+    person.first_name AS "First Name",
+    person.last_name AS "Last Name",
+    COUNT(instr_time.person_id) AS "No of Lessons"
+FROM
+    lesson AS l
+    LEFT JOIN instructor_timeslot AS instr_time ON l.instructor_timeslot_id = instr_time.instructor_timeslot_id
+    INNER JOIN instructor ON instructor.person_id = instr_time.person_id
+    INNER JOIN person ON person.person_id = instructor.person_id
+    LEFT JOIN timeslot AS TIME ON TIME.slot_id = instr_time.slot_id
 WHERE
     EXTRACT(
         MONTH
         FROM
-            ts.slot_date
+            TIME.slot_date
     ) = EXTRACT(
         MONTH
         FROM
             CURRENT_DATE
     )
-group by
-    it.person_id,
-    ins.first_name,
-    ins.last_name;
+GROUP BY
+    instr_time.person_id,
+    person.first_name,
+    person.last_name;
+
 
 --query 4
 SELECT
-    TO_CHAR (sub.slot_date, 'Dy') AS Day,
-    ens.target_genre AS Genre,
-    sub.slot_date,
+    TO_CHAR(subquery.slot_date, 'Dy') AS DAY,
+    ensemble.target_genre AS Genre,
+    subquery.slot_date,
     CASE
-        WHEN (ens.maximum_students::int - COUNT(sl.person_id)) < 1 THEN 'No Seats'
-        WHEN (ens.maximum_students::int - COUNT(sl.person_id)) > 2 THEN 'Many Seats'
+        WHEN (ensemble.maximum_students - COUNT(stu_les.person_id)) < 1 THEN 'No Seats'
+        WHEN (ensemble.maximum_students - COUNT(stu_les.person_id)) > 2 THEN 'Many Seats'
         ELSE '1 or 2 Seats'
     END AS "No of Free Seats"
 FROM
-    ensemble AS ens
-    left JOIN student_lesson AS sl ON sl.lesson_id = ens.lesson_id
-    inner JOIN price_info AS pi ON pi.price_info_id = ens.price_info_id
-    inner JOIN instructor_timeslot AS it ON ens.instructor_timeslot_id = it.instructor_timeslot_id
+    ensemble
+    INNER JOIN lesson ON lesson.lesson_id = ensemble.lesson_id
+    LEFT JOIN student_lesson AS stu_les ON stu_les.lesson_id = lesson.lesson_id
+    INNER JOIN price_info AS info ON info.price_info_id = lesson.price_info_id
+    INNER JOIN instructor_timeslot AS inst_time ON lesson.instructor_timeslot_id = inst_time.instructor_timeslot_id
     INNER JOIN (
         SELECT
             ts.slot_id,
@@ -107,11 +116,13 @@ FROM
                 FROM
                     CURRENT_DATE
             ) + 1
-    ) AS sub ON it.slot_id = sub.slot_id
+    ) AS subquery ON inst_time.slot_id = subquery.slot_id
 WHERE
-    pi.lesson_type = 'Ensemble'
+    info.lesson_type = 'Ensemble'
 GROUP BY
-    TO_CHAR (sub.slot_date, 'Dy'),
-    ens.target_genre,
-    sub.slot_date,
-    ens.maximum_students;
+    TO_CHAR(subquery.slot_date, 'Dy'),
+    ensemble.target_genre,
+    subquery.slot_date,
+    ensemble.maximum_students
+ORDER BY
+    subquery.slot_date;
