@@ -1,4 +1,5 @@
 --query 1 display all lessons
+--Expected: 30 lessons in total, 18 ensemble(8 in dec), 7 individual and 5 group
 SELECT
     TO_CHAR(all_times.slot_date, 'Mon') AS "Month",
     COUNT(*) AS "Total Lessons",
@@ -38,6 +39,7 @@ ORDER BY
 
 
 --query 2
+-- Exptected 3 students with 2 siblings, 2 students with 1 sibling, 25-3-2 = 20 without
 SELECT
     number_of_siblings AS "No of Siblings",
     COUNT(person_id) AS "No of Students"
@@ -63,6 +65,8 @@ ORDER BY
 
 
 --query 3
+--Expected outcome: 5 instructors, no of lessons depends on current_date
+-- for nov total 22, for dec total of 8
 SELECT
     instr_time.person_id AS "Instructor ID",
     person.first_name AS "First Name",
@@ -119,6 +123,9 @@ GROUP BY
 
 
 --query 4
+--Expected result depends on CURRENT_DATE (CD).
+--FOR CD first week of dec (week 45) 4 ensembles, 1 full, 2 with 1or2 and 1 with many seats 
+--FOR CD second week of dec (week 46) 4 ensembles, all many seats
 SELECT
     TO_CHAR(subquery.slot_date, 'Dy') AS DAY,
     ensemble.target_genre AS Genre,
