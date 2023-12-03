@@ -1,6 +1,6 @@
 --query 1 display all lessons
 SELECT
-    TO_CHAR(timeslot.slot_date, 'Mon') AS "Month",
+    TO_CHAR(all_times.slot_date, 'Mon') AS "Month",
     COUNT(*) AS "Total Lessons",
     COUNT(*) FILTER (
         WHERE
@@ -16,19 +16,25 @@ SELECT
     ) AS "Ensemble"
 FROM
     lesson
-    INNER JOIN price_info AS info ON lesson.price_info_id = info.price_info_id
-    INNER JOIN instructor_timeslot AS instr_time ON lesson.instructor_timeslot_id = instr_time.slot_id
-    INNER JOIN timeslot ON instr_time.slot_id = timeslot.slot_id
+    LEFT JOIN price_info AS info ON lesson.price_info_id = info.price_info_id
+    LEFT JOIN (
+        SELECT
+            instructor_timeslot_id,
+            slot_date
+        FROM
+            instructor_timeslot AS instr_time
+            LEFT JOIN timeslot ON instr_time.slot_id = timeslot.slot_id
+    ) AS all_times ON all_times.instructor_timeslot_id = lesson.instructor_timeslot_id
 WHERE
     EXTRACT(
         YEAR
         FROM
-            timeslot.slot_date
+            all_times.slot_date
     ) = 2023
 GROUP BY
-    TO_CHAR(timeslot.slot_date, 'Mon')
+    TO_CHAR(all_times.slot_date, 'Mon')
 ORDER BY
-    TO_CHAR(timeslot.slot_date, 'Mon');
+    TO_CHAR(all_times.slot_date, 'Mon') DESC;
 
 
 --query 2
