@@ -47,17 +47,15 @@ FROM
     (
         SELECT
             student.person_id,
-            CASE
-                WHEN COUNT(sibling.person_id) = 0 THEN '0'
-                WHEN COUNT(sibling.person_id) = 1 THEN '1'
-                WHEN COUNT(sibling.person_id) = 2 THEN '2'
-            END AS number_of_siblings
+            COUNT(sibling.person_id) AS number_of_siblings
         FROM
             student
             LEFT JOIN sibling ON student.person_id = sibling.person_id
         GROUP BY
             student.person_id
-    )
+        HAVING
+            COUNT(sibling.person_id) < 3
+    ) AS subquery
 GROUP BY
     number_of_siblings
 ORDER BY
