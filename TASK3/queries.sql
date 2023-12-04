@@ -65,27 +65,17 @@ ORDER BY
 --query 3
 --Expected outcome: 5 instructors, no of lessons depends on current_date
 -- for nov total 22, for dec total of 8
-CREATE VIEW
-    instructor_info AS
 SELECT
-    person.*,
-    instructor.instructor_id
-FROM
-    instructor
-    INNER JOIN person ON person.person_id = instructor.person_id;
-
-
---The query using the view
-SELECT
-    instructor_info.person_id AS "Instructor ID",
-    instructor_info.first_name AS "First Name",
-    instructor_info.last_name AS "Last Name",
-    COUNT(instructor_info.person_id) AS "No of Lessons"
+    instr_time.person_id AS "Instructor ID",
+    person.first_name AS "First Name",
+    person.last_name AS "Last Name",
+    COUNT(instr_time.person_id) AS "No of Lessons"
 FROM
     lesson AS l
     LEFT JOIN instructor_timeslot AS instr_time ON l.instructor_timeslot_id = instr_time.instructor_timeslot_id
+    INNER JOIN instructor ON instructor.person_id = instr_time.person_id
+    INNER JOIN person ON person.person_id = instructor.person_id
     LEFT JOIN timeslot AS TIME ON TIME.slot_id = instr_time.slot_id
-    LEFT JOIN instructor_info ON instructor_info.person_id = instr_time.person_id
 WHERE
     EXTRACT(
         MONTH
@@ -97,11 +87,11 @@ WHERE
             CURRENT_DATE
     )
 GROUP BY
-    instructor_info.person_id,
-    instructor_info.first_name,
-    instructor_info.last_name
+    instr_time.person_id,
+    person.first_name,
+    person.last_name
 ORDER BY
-    instructor_info.person_id;
+    instr_time.person_id;
 
 
 --query 4
