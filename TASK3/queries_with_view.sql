@@ -3,10 +3,9 @@ CREATE VIEW
     booked_lessons_view AS
 SELECT
     l.lesson_id AS id,
-    info.lesson_type AS
-TYPE,
-it.person_id AS instructor,
-ts.slot_date AS date
+    info.lesson_type AS lesson_type,
+    it.person_id AS instructor,
+    ts.slot_date AS date
 FROM
     lesson AS l
     LEFT JOIN price_info AS info ON l.price_info_id = info.price_info_id
@@ -21,15 +20,15 @@ SELECT
     COUNT(*) AS "Total Lessons",
     COUNT(*) FILTER (
         WHERE
-            booked_lessons_view.type = 'Individual'
+            booked_lessons_view.lesson_type = 'Individual'
     ) AS "Individual",
     COUNT(*) FILTER (
         WHERE
-            booked_lessons_view.type = 'Group'
+            booked_lessons_view.lesson_type = 'Group'
     ) AS "Group",
     COUNT(*) FILTER (
         WHERE
-            booked_lessons_view.type = 'Ensemble'
+            booked_lessons_view.lesson_type = 'Ensemble'
     ) AS "Ensemble"
 FROM
     booked_lessons_view
