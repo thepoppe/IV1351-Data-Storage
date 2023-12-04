@@ -117,7 +117,6 @@ CREATE TABLE
     instructor_timeslot_id SERIAL PRIMARY KEY,
     person_id INTEGER NOT NULL,
     slot_id INTEGER NOT NULL,
-    is_available BOOLEAN DEFAULT TRUE NOT NULL,
     FOREIGN KEY (person_id) REFERENCES instructor (person_id) ON DELETE CASCADE,
     FOREIGN KEY (slot_id) REFERENCES timeslot (slot_id) ON DELETE CASCADE
   );
@@ -933,22 +932,6 @@ VALUES
   );
 
 
--- set is_available = false
-UPDATE instructor_timeslot
-SET
-  is_available = FALSE
-WHERE
-  (instructor_timeslot_id) IN (
-    CURRVAL('instructor_timeslot_instructor_timeslot_id_seq') -6,
-    CURRVAL('instructor_timeslot_instructor_timeslot_id_seq') -5,
-    CURRVAL('instructor_timeslot_instructor_timeslot_id_seq') -4,
-    CURRVAL('instructor_timeslot_instructor_timeslot_id_seq') -3,
-    CURRVAL('instructor_timeslot_instructor_timeslot_id_seq') -2,
-    CURRVAL('instructor_timeslot_instructor_timeslot_id_seq') -1,
-    CURRVAL('instructor_timeslot_instructor_timeslot_id_seq') -0
-  );
-
-
 INSERT INTO
   individual_lesson (lesson_id, instrument)
 VALUES
@@ -975,32 +958,27 @@ VALUES
 
 --map to teachers
 INSERT INTO
-  instructor_timeslot (person_id, slot_id, is_available)
+  instructor_timeslot (person_id, slot_id)
 VALUES
   (
     CURRVAL('person_person_id_seq') - 4,
-    CURRVAL('timeslot_slot_id_seq'),
-    FALSE
+    CURRVAL('timeslot_slot_id_seq')
   ),
   (
     CURRVAL('person_person_id_seq') - 3,
-    CURRVAL('timeslot_slot_id_seq') - 1,
-    FALSE
+    CURRVAL('timeslot_slot_id_seq') - 1
   ),
   (
     CURRVAL('person_person_id_seq') - 2,
-    CURRVAL('timeslot_slot_id_seq') - 2,
-    FALSE
+    CURRVAL('timeslot_slot_id_seq') - 2
   ),
   (
     CURRVAL('person_person_id_seq') - 1,
-    CURRVAL('timeslot_slot_id_seq') - 3,
-    FALSE
+    CURRVAL('timeslot_slot_id_seq') - 3
   ),
   (
     CURRVAL('person_person_id_seq'),
-    CURRVAL('timeslot_slot_id_seq') - 4,
-    FALSE
+    CURRVAL('timeslot_slot_id_seq') - 4
   );
 
 
@@ -1063,57 +1041,47 @@ VALUES
 
 -- Map timeslots to teachers
 INSERT INTO
-  instructor_timeslot (person_id, slot_id, is_available)
+  instructor_timeslot (person_id, slot_id)
 VALUES
   (
     CURRVAL('person_person_id_seq') - 4,
-    CURRVAL('timeslot_slot_id_seq'),
-    FALSE
+    CURRVAL('timeslot_slot_id_seq')
   ),
   (
     CURRVAL('person_person_id_seq') - 3,
-    CURRVAL('timeslot_slot_id_seq') - 1,
-    FALSE
+    CURRVAL('timeslot_slot_id_seq') - 1
   ),
   (
     CURRVAL('person_person_id_seq') - 2,
-    CURRVAL('timeslot_slot_id_seq') - 2,
-    FALSE
+    CURRVAL('timeslot_slot_id_seq') - 2
   ),
   (
     CURRVAL('person_person_id_seq') - 1,
-    CURRVAL('timeslot_slot_id_seq') - 3,
-    FALSE
+    CURRVAL('timeslot_slot_id_seq') - 3
   ),
   (
     CURRVAL('person_person_id_seq'),
-    CURRVAL('timeslot_slot_id_seq') - 4,
-    FALSE
+    CURRVAL('timeslot_slot_id_seq') - 4
   ),
   (
     CURRVAL('person_person_id_seq') - 4,
-    CURRVAL('timeslot_slot_id_seq') - 5,
-    FALSE
+    CURRVAL('timeslot_slot_id_seq') - 5
   ),
   (
     CURRVAL('person_person_id_seq') - 3,
-    CURRVAL('timeslot_slot_id_seq') - 6,
-    FALSE
+    CURRVAL('timeslot_slot_id_seq') - 6
   ),
   (
     CURRVAL('person_person_id_seq') - 2,
-    CURRVAL('timeslot_slot_id_seq') - 7,
-    FALSE
+    CURRVAL('timeslot_slot_id_seq') - 7
   ),
   (
     CURRVAL('person_person_id_seq') - 1,
-    CURRVAL('timeslot_slot_id_seq') - 8,
-    FALSE
+    CURRVAL('timeslot_slot_id_seq') - 8
   ),
   (
     CURRVAL('person_person_id_seq'),
-    CURRVAL('timeslot_slot_id_seq') - 9,
-    FALSE
+    CURRVAL('timeslot_slot_id_seq') - 9
   );
 
 
@@ -1268,47 +1236,39 @@ VALUES
 
 -- Map timeslots to teachers
 INSERT INTO
-  instructor_timeslot (person_id, slot_id, is_available)
+  instructor_timeslot (person_id, slot_id)
 VALUES
   (
     CURRVAL('person_person_id_seq') - 4,
-    CURRVAL('timeslot_slot_id_seq') - 7,
-    FALSE
+    CURRVAL('timeslot_slot_id_seq') - 7
   ),
   (
     CURRVAL('person_person_id_seq') - 3,
-    CURRVAL('timeslot_slot_id_seq') - 6,
-    FALSE
+    CURRVAL('timeslot_slot_id_seq') - 6
   ),
   (
     CURRVAL('person_person_id_seq') - 2,
-    CURRVAL('timeslot_slot_id_seq') - 5,
-    FALSE
+    CURRVAL('timeslot_slot_id_seq') - 5
   ),
   (
     CURRVAL('person_person_id_seq') - 1,
-    CURRVAL('timeslot_slot_id_seq') - 4,
-    FALSE
+    CURRVAL('timeslot_slot_id_seq') - 4
   ),
   (
     CURRVAL('person_person_id_seq'),
-    CURRVAL('timeslot_slot_id_seq') - 3,
-    FALSE
+    CURRVAL('timeslot_slot_id_seq') - 3
   ),
   (
     CURRVAL('person_person_id_seq') - 4,
-    CURRVAL('timeslot_slot_id_seq') - 2,
-    FALSE
+    CURRVAL('timeslot_slot_id_seq') - 2
   ),
   (
     CURRVAL('person_person_id_seq') - 3,
-    CURRVAL('timeslot_slot_id_seq') - 1,
-    FALSE
+    CURRVAL('timeslot_slot_id_seq') - 1
   ),
   (
     CURRVAL('person_person_id_seq') - 2,
-    CURRVAL('timeslot_slot_id_seq'),
-    FALSE
+    CURRVAL('timeslot_slot_id_seq')
   );
 
 
