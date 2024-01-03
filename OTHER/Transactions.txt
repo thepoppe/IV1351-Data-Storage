@@ -1,6 +1,6 @@
 Transactions - HARD but important topic
 
-Concurrent programming is not neededbecause of databases.
+Concurrent programming is not needed because of databases.
 Games also can use database transactions. WOW example
 
 Transaction manager coordinates the execution of the programs.
@@ -30,10 +30,11 @@ T1 transfer 100SEk to X from Q
 
 Transaction state diagram
 
-	  partially commited -> commited
+	  -> partially commited -> commited
 	/	|
-ACTIVE 	       \|/
-	\    failed -> aborted
+ACTIVE 	        |
+	\      \|/
+	  ->  failed -> aborted
 
 
 
@@ -47,7 +48,7 @@ task2
 
 reads from the first as soon as the value is updated by task1
 
-How do we know if something is wron in the transactions. Serialisable????
+How do we know if something is wron in the transactions. 
 if a concurrent sequence can be converted to serial with same vlaues and output its seraialisable
 
 
@@ -77,6 +78,7 @@ optimistic - use "lock" and handle conflicts.
 
 TWO PHASE locking. 2PL
 	When a transaction asks for locks when they are releasing the can not obtain more locks
+	different levels
 
 DETECTING DEADLOCK - ( deadlock is when two locks are locked by eachother ) 
 wait for graphs 
