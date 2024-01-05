@@ -25,7 +25,7 @@ CREATE TABLE
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
     phone_number VARCHAR(20) UNIQUE NOT NULL,
-    email_address VARCHAR(100) UNIQUE NOT NULL
+    email_address VARCHAR(200) UNIQUE NOT NULL
   );
 
 
@@ -53,6 +53,7 @@ CREATE TABLE
     person_id INT NOT NULL,
     student_id SERIAL NOT NULL,
     enrollment_date DATE DEFAULT CURRENT_DATE NOT NULL,
+    max_rentals INT NOT NULL DEFAULT 2 CHECK (max_rentals >= 0),
     FOREIGN KEY (person_id) REFERENCES person (person_id) ON DELETE CASCADE,
     CONSTRAINT PK_student PRIMARY KEY (person_id)
   );
@@ -86,6 +87,11 @@ CREATE TABLE
     price_info_id SERIAL PRIMARY KEY,
     lesson_type lesson_type NOT NULL,
     base_price VARCHAR(10) NOT NULL,
+    sibling_discount INT NOT NULL CHECK (
+      sibling_discount >= 0
+      AND sibling_discount <= 100
+    ),
+    instructor_payment VARCHAR(10) NOT NULL,
     lesson_level level_type,
     starting_date DATE NOT NULL,
     end_date DATE
@@ -874,27 +880,73 @@ VALUES
   (CURRVAL('person_person_id_seq'), 10);
 
 
---create price information table
+--create price information table 
 INSERT INTO
   price_info (
     lesson_type,
     base_price,
+    sibling_discount,
+    instructor_payment,
     lesson_level,
     starting_date
   )
 VALUES
-  ('Individual', '70.00', 'Beginner', '2023-01-01'),
+  (
+    'Individual',
+    '70.00',
+    25,
+    '50',
+    'Beginner',
+    '2023-01-01'
+  ),
   (
     'Individual',
     '75.00',
+    25,
+    '60',
     'Intermediate',
     '2023-01-15'
   ),
-  ('Individual', '80.00', 'Advanced', '2023-02-01'),
-  ('Group', '40.00', 'Beginner', '2023-01-01'),
-  ('Group', '45.00', 'Intermediate', '2023-01-15'),
-  ('Group', '50.00', 'Advanced', '2023-02-01'),
-  ('Ensemble', '30.00', NULL, '2023-01-01');
+  (
+    'Individual',
+    '80.00',
+    25,
+    '70',
+    'Advanced',
+    '2023-02-01'
+  ),
+  (
+    'Group',
+    '40.00',
+    25,
+    '100',
+    'Beginner',
+    '2023-01-01'
+  ),
+  (
+    'Group',
+    '45.00',
+    25,
+    '110',
+    'Intermediate',
+    '2023-01-15'
+  ),
+  (
+    'Group',
+    '50.00',
+    25,
+    '120',
+    'Advanced',
+    '2023-02-01'
+  ),
+  (
+    'Ensemble',
+    '30.00',
+    25,
+    '150',
+    NULL,
+    '2023-01-01'
+  );
 
 
 --map available time to a lesson 
@@ -1016,11 +1068,11 @@ VALUES
 INSERT INTO
   group_lesson (lesson_id, instrument, minimum_students)
 VALUES
-  (CURRVAL('lesson_lesson_id_seq') -6, 'Guitar', 5),
-  (CURRVAL('lesson_lesson_id_seq') -5, 'Piano', 4),
-  (CURRVAL('lesson_lesson_id_seq') -4, 'Violin', 3),
-  (CURRVAL('lesson_lesson_id_seq') -3, 'Drums', 6),
-  (CURRVAL('lesson_lesson_id_seq') -2, 'Guitar', 4);
+  (CURRVAL('lesson_lesson_id_seq') -4, 'Guitar', 5),
+  (CURRVAL('lesson_lesson_id_seq') -3, 'Piano', 4),
+  (CURRVAL('lesson_lesson_id_seq') -2, 'Violin', 3),
+  (CURRVAL('lesson_lesson_id_seq') -1, 'Drums', 6),
+  (CURRVAL('lesson_lesson_id_seq') -0, 'Guitar', 4);
 
 
 --create 10 ensembles
