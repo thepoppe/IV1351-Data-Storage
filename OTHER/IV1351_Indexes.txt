@@ -1,0 +1,120 @@
+INdexes - important for exam
+
+Indexes are used to speed up queries, an indexed sorted file can be scanned with binary search which is good.
+
+Searching within a page can be considered constant, the binding between io is the most time consuming.
+
+DATABASE INDEX101
+structure: < Key, Pointer >
+
+PRIMARY INDEX - MUST REMEMBER
+the most basic index is the primar index and there can only be one.
+Indices  soak up CPU and I/O, "indexes needs to be removed and added when storing and deleting"
+
+SECONDARY INDEX
+to speed up search for other attributes, a secondary index can be created 
+clustered - create an sparse index on another index, filed stored again? requires physical ordering of the file.
+non-clustered - dense -complicated
+
+	dense meaning all the indexes point to diffenreent.
+
+
+example of how indexes speed up searching.
+
+4 pages at 4096 bytes each row is 100 bytes
+|R| = 300k records
+|B| = 300k/40 = 7500 #blocks
+search complexity 	unsorted = 7500
+			sorted = log(7500)
+indexes: 4 pages at 4096 bytes, each row has a key and a pointer 9 + 6 bytes = 15 bytes. "index record"
+	4096/15 = 273 	
+	|I(r)| = #entries 7500	
+	|B| = 7500 / 273 = 28 Block
+	search is by default log(28) = 5 blocks
+
+
+
+INDEX INSIGHT BY PARIS
+	Primary indexes are easy,
+	secondary keys are very important to optimize query
+	B+ Trees are nice but not always the fastest
+
+	indexes can be created with CREATE INDEX name ON table (column)
+	physical database tuning refers to optimizing the indexes based on the db usage.
+
+
+
+INDEX DATA STRUCTURE	
+HASH:
+	space O(n)
+	Access Average O(1) worst O(n)
+	updates better suited for few/ no
+	best data structure for point queries
+
+B-Trees:
+	space O(n)
+	access O(log(n))
+	always balanced eg B+tree
+	updates: Well suited for dynamic updates.
+	Good performance for point queries
+
+
+
+
+HAST TABLES 
+	uniform??
+	crc64, murmur, xxhash
+	1 hash function 	->	2 associative "Slot" Array		
+	since acces is constant only 1 bucket needs to be fetched
+
+	
+	hashfunction not injective ie not 1to1 mapping - we dont know how many buckets are needed
+	dynamic hash
+	Extendible Hashing - MUST to know for exam IS on the exam.
+		When a bucket is full how to add more.	
+		2 dirs, global ( the hasshing dir ) Local ( the buckets ) 
+		each slot has a depth when locale d > global d we extend the bucket.
+		the depth refers to binary d=2
+		
+		!! When a bucket is full we look at the local depth, if d' < d we extend the local bucket into 2 buckets !!
+		If the bucket is full and the d'  == d we need to reconfiguere the global 
+	
+		Scewed data or hashfunction will create a large depth for the global 
+
+
+	Linear Hashing
+		common to deal wih skewed  key distributions
+		REHASHES badly scewed data
+
+		first try easy hash when a bucket is full when inserting the split pointer moves. 
+		The entry above the split is rehashed with another hashfunction.
+		The value that created the overflow in a bucket is stored in an overflow page
+
+		To get a value we use the first hashfunction. IF the result is above the split line the
+		 second hashfunction is used
+
+
+
+
+B-TREES:
+
+	Normal tree worst case insert delete 2log(N)
+
+
+	B+ TREES: more efficent for scans. fetching numbers in a sequence. Built for databases, very optimal
+		NODES!=LEAVES
+		nodes are only used for searching, 
+		the leaves contains the actual data and have a pointer to the next leave (same as parent)
+
+		worst case 3h +1
+	
+	
+	
+
+
+		
+	
+
+		
+
+

@@ -1,0 +1,99 @@
+Transactions - HARD but important topic
+
+Concurrent programming is not neededbecause of databases.
+Games also can use database transactions. WOW example
+
+Transaction manager coordinates the execution of the programs.
+
+DATA = CELL in database, a specific column in a row.
+TRansaction = block of statemenets
+	ACID: 	atomicity : all or more IE all statements are completed or none. IMPORTANT
+		durability : "all updates are persisted" IE everything is stored.
+			db contains duplicates until commit/abort basically.
+			2 ways: write ahead log AND shadow paging
+		Isolation : "single-transactions view" - dbs thinks that the task is the only one in the db.
+			Concurrent exectution means not serial. 
+		Consistency : "no incosistent state" - if your db wa in correct state before it will be after NOT to IMPORTANT.
+		
+
+ex:
+T1 transfer 100SEk to X from Q
+=> 	
+	read (X)
+	x := X-100
+	write(X)
+	read (Q)
+	Q:=Q+100
+	write (Q)
+
+
+
+Transaction state diagram
+
+	  partially commited -> commited
+	/	|
+ACTIVE 	       \|/
+	\    failed -> aborted
+
+
+
+
+EXAM PART
+Transaction manager creates a schedule in what order to execute
+2 transaction on same data can be scheduled as serial, ("sequential"). PRODUCES correct transaction but is slow.
+
+concurrent schedule
+task2 
+
+reads from the first as soon as the value is updated by task1
+
+How do we know if something is wron in the transactions. Serialisable????
+if a concurrent sequence can be converted to serial with same vlaues and output its seraialisable
+
+
+if serial E serializable E all combinations.
+HOW TO CHECK
+conflict serializable, veryvery easy to implement
+	DATAbases focus on if the writes are focusing oon the same item.
+	1 if there consists 2 transactions
+	2 they access the same object Q
+	3 one of them tries to write to Q
+
+
+Conflict equivalent - obtain the same number of operations and confliction operations.
+
+its easy to detect which are conflict serializable.
+Use graph theory,
+	detedt the confliction operations, draw lines between. IF A cycle appears not serializable. 
+
+
+
+pessimistic concurrency control- Let things happen then validates. If conflict rollback all. Good if not many conflicts.
+
+optimistic - use "lock" and handle conflicts.
+	W-lock (Q) most exclusive
+	R-LOCK (Q) read only
+
+
+TWO PHASE locking. 2PL
+	When a transaction asks for locks when they are releasing the can not obtain more locks
+
+DETECTING DEADLOCK - ( deadlock is when two locks are locked by eachother ) 
+wait for graphs 
+	-- Chose victim to kill, ie restart to remove locks.
+	
+
+ANOMALIES
+DIRTY READ - 		task 1 aborts after task2 have read the new value
+NON-REPEATABLE READS -	
+LOST UPDATES -		
+PHANTOM READS - 	read table task2 insert into table 
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,503 @@
+Keynotes book:
+
+1.1:
+Define a database. a collection of related data in some way
+properties of a database: 	represent an aspect from the real world
+				be logically coherent
+				be designed for a specific use-case
+
+
+DBMS databaseManagementSystem a system that helps defining, constructin, maniuplating and sharing databases.
+
+Application Program sends queries or requests of data to the DBMS
+
+database + DBMS  = database system
+
+1.2:
+metadata? no answers yet
+
+5files - STUDENT, COURSE, SECTIN, GRADER_REPORT, PREREQUISITE
+
+
+	1 define: specify the types of dataelements - what attributes dows each part need
+
+	2 construct: create records of the entitites - may be related
+	
+	3 manipulate: do actions on the database, queries = retrieve data. update = change the fields in the records
+
+	4 no sharing ???
+
+Designing a new app for an existing database: 	requriements specification and analysis ->conceptual design -> 
+						logical design = a model that can be impklmented in a commercial DBMS ->
+						psycail design = final stage" more specifications" probably on hardware
+
+
+
+1.3:
+Benefits / characterics 
+	* Self describing nature of a database system??
+		METADATA aka the information stored in the catalog. data types, format and constraints
+		
+		A catalog ( RElations and columns ) ?
+		
+		
+	* Insulation between program and data, nice
+
+		changes to the records doesnt affect the applikation ? kindamakes sense?
+		data abstraction allows operations/methods to be changed witout "couplin" ie they use a inteface and implemnetation.
+
+	* support of multiple views of the data. Easy sharing
+
+		differnt users ca be presented with differnet "views" of the data. ie each user only gets thedata they need
+		
+
+	* sharing and multiuser transactions. ie less error in data losses?
+		
+		multi user DBMS must include CONCURRENCY CONTROL to ensure that multiple users dont mainpulate the same data at once. 
+		OLTP online transaction processing.
+		
+		TRANSACTION - a process that includes more than one database access
+
+		
+1.4:
+Actors - people handling the database
+
+	admins DBA - controlls who can do waht 
+	designers - analyses the need and chooses an appropieata structure
+	end user - popele accessing the database, from engineers to common folks
+
+1.5:
+Workers behind the scene - not interested in the content of the specific database
+	DBMS system designer,
+	Ttool developers
+	operators and maintenance
+
+1.6:
+pros of DBMS
+	reduces redundancy ie files handling the same eneity can be combined.
+	data normalization - each file is saved at only once place
+	denormalizatin is to store the same attributew at 2 places for perfermance
+
+	DBMS shoudl provide a secuity and authorization subsyste,
+
+	efficient query processing
+
+	backups and recovery
+
+	multiuser intefce
+
+
+1.7:
+
+
+	.4 XML language makes it poossble to interchange data across multiplte databases
+
+
+1.8 
+When DbMS is bad
+	A lot of overhead on operations, expensive and general oDBMS operations
+	
+
+
+1.9
+Summary   SIDA 60
+
+	1.1:	Define the folllowing
+	
+		data = the information of something
+		database=  a colecction of related data.
+		DBMS the = general language for databases
+		database system = a database using DBMS
+		database catalog = the specification of the dataset in database
+		program-data independance = low coupling meaning that the functionality of a program isnt affected by changes on the data
+		user view = the data presented to the specific user from the database
+		DBA = database admin
+		end user =  the person needing to access the data in the database
+		canned transaction ? =  the users that access the database to constantly query and updating
+		deductive database system ? i dunno something about a database system with special "deduction rules" for interferencing new data
+		persistent object = refers to an object oriented database where a whole object can be stored easily
+		meta-data = the data in the the database catalog
+		transaction-processing application = an apllication that let multipliple users do a transactions safely
+
+	1.2:	The four main types of actions involves databases
+
+		define - construct - manpulate - share
+
+	1.3:	Discuss main characteristics of a database compared to  traditional file systems
+		
+		The main characterics are that the databaseis selfdescribeing, from the data specification in the catalog
+		Also, provides insulation between the app and the data.
+		Third, enable multiple views for the data for diffrent users
+		and last, enables safe sharing between users. ie transactions
+
+	1.4:	what are the responisibilities of the DBA and the database designer
+	
+		DBA is the admins that authorize access for users and mainatain good functionality.
+		The deisgner is responisble of llooking at the specified data and analys what structure fits the usecase. Mostly sets up the initial database
+
+	1.5:	What are the differnt types of database end users
+	
+		casual - accessing some data sometimes, not the same
+		naive - the ones starting queries and updates often
+		sophistaced user - engineers, scienctis knows a lot about the system
+		standalone - personal maintaining the database
+
+	1.6:	Discuss the capabilities that shuold be provided by a DBMS
+		
+		should provide a security subsystem, a backup/recorvyey subsystem, efficient query processing and 
+		multiuser itnerface(meanin differnet views for the user)
+		
+
+	1.7:	Discuss the diufferences between database systems and information retrieval systems
+
+		
+		information retrieval systems??? dont knonw what it is? ordinary filesystem?
+	
+
+
+
+chatGPT Addition
+1.1:
+
+Your definitions are generally accurate, but you could add a bit more detail for some terms:
+Data: Data is more than just the information of something; it's raw facts or figures without context. It can be text, numbers, images, etc.
+Database Catalog: It's not just a specification but a repository of metadata about the database, including schema information, data definitions, and more.
+Canned Transaction: Canned transactions are predefined, common tasks or queries that are typically used for routine operations.
+Deductive Database System: You're on the right track, but you can mention that it uses deduction or reasoning rules to infer new data based on existing data.
+
+1.3:
+You correctly identify some differences between a database and traditional file systems, but you could expand on these points:
+Self-Describing: Explain that the database includes metadata that describes the structure of data, making it more self-contained.
+Insulation: Clarify that this insulation allows for better data security and control, as well as reduced data redundancy.
+Multiple Views: Elaborate on how different users can see the data in different ways, tailoring it to their needs.
+Safe Sharing: Mention data integrity and concurrency control mechanisms that enable multiple users to work with the data simultaneously.
+
+1.4:
+Your descriptions of the roles of a DBA and a database designer are somewhat accurate but could be more detailed:
+DBA: In addition to authorizing access and ensuring functionality, mention their role in performance tuning, security management, and backup and recovery.
+Database Designer: Highlight the importance of designing a database schema that is efficient, normalized, and suits the specific needs of the organization or application.
+
+1.5:
+You've mentioned the different types of database end users, but you can provide more context:
+Casual Users: Infrequent users who need simple, user-friendly interfaces for basic data retrieval, like checking bank balances or product availability.
+Naive Users: More active, yet non-expert users who perform regular queries and updates, often using user-friendly software, e.g., receptionists managing appointments.
+Sophisticated Users: Proficient experts, such as data analysts and engineers, capable of complex queries, data analysis, and customization.
+Standalone Users: Individuals managing their own databases for personal or small-scale use, responsible for both data and database administration, like organizing personal contact lists or project-specific data.
+
+1.6:
+Your list of DBMS capabilities is a good start, but you can expand on each of them:
+Security Subsystem: Mention authentication, authorization, and encryption.
+Backup/Recovery Subsystem: Explain the importance of data backup and recovery in case of failures.
+Efficient Query Processing: Discuss optimization techniques and query performance.
+Multiuser Interface: Describe how a DBMS provides concurrent access and different views for multiple users.
+
+1.7:
+Information Retrieval Systems: These systems are distinct from databases. They are designed to search, retrieve, and present information, typically from unstructured or semi-structured data sources like text documents. Clarify that they are not the same as ordinary file systems and highlight the differences between them
+
+
+
+
+CHAPTER 2
+2.1
+	Data abstraction - each use perceives the level of details in the data
+	data model - concepts taht describes the structure of the data ie datatypes, realtions constraints
+	
+	high level/conceptual data model - provides concepts close to hoiw most user access data
+	low level/ physical data model - consepts on HOW the data is stored
+	representiarional in between
+
+	CONCEPTUAL MODEL: describes the data as entitites, attributes and realtionships. Entity is a real world object/concept
+	attribute descriibes individual feautures of the entity. a relationship diskrecbes an association between two objects
+
+	
+	Access path is an efficient way of searching  through the recods using for example hashing or index. index provides a 	direct access.
+
+	self describing data models - combines the description of the data with the value of the data. XML "key-value stores" 	NOSQL aka large databases
+	DBMS separets the description "chema" from the value of the data. ?? hmm 
+
+
+	2.1.2
+	The descrtion of the data is distinguished from the actual data and is represented as the database schema.
+	SCHEMA CONSTRUCT - each "class" in the schema. The schema may not contain all the the constraint and relationships.
+
+	database state / snapshot - the data at a aspecific time in the database. also called "current set" of occurenves or 	intsance
+
+	schema evolution - is the refernce to adding more info to the schema, updating the structurr off an entity in the database.
+
+
+2.2
+	THREE-SCHEMA archiitecture - created to helpm fulfill 3 of the main characterstics of a dbms( selfdescribing,insulated data, multiuser ).
+	The goal is to separate the UI from the physical database.
+	level1: internal schema - the pshyical storage structure 
+	level2: conceptual schema - the structure of teh whole database with level1 hidden. describes entities, atttirbutes etc
+	level3: external schema / viewlevel - a number of user views, each displaying the correct data abstraction.
+
+	NOTE the actual data is always only stored at the physical level. meaning a request from a user goes from level 3 -> 2 -> 1 and is formatted on way 	back this is known as "mapping"
+
+
+	DATA INDEPENDANCE - changing 1 level doesnt affect the other.
+
+
+2.3	DBM Langugages
+	With no strict separation DDL data definition language  is used  to define both scehmas
+
+	With a clear separation DDL is used for conceptual schema only, SDL - storage definition language is used for the intenal schema. The mappin is 	placed in either
+
+	With a true three schema architecture a third language VDL - view definition language.
+
+	DML - data manipulation language. high level - good. low level needs to be embedded in a general purpose language. 
+	low level ara called record at a time. high level like SQL is called set at a time
+
+
+	DBMS Interfaces
+	Web-based user interfaces 
+	Apps
+	Form-based interfaces -> input to the database
+	GUI
+	Natural langugage interfces
+	Keyword -based database search
+	speech input output
+	parametic users like baning personal-needing accessoften and only enter specific parameters.
+	interface for the DBA
+
+
+2.4	
+	2.4.1
+	sida 73 snabbläst
+	
+	2.4.2 Database system utilities
+	Loading- 
+	Backup-
+	storage reorginaztion-
+	Performance monitoring- 
+
+	2.4.3 Tools, environment s.76
+	data dictonary
+
+	DB/DC stystem - some DBMS and adata commincation system
+
+
+
+2.5	Centralized and Client/server arch. for DBMSs SIDA 80
+	
+	Centralized:
+	early stages- the terminal of the user had low permonace, the applications and proccessing was done centralized in the the OS of the DB
+	
+
+	Client/server 2tier
+	a client and a server connected to the database. usually called SQL server.
+	ODBC - open database connectivity provides an API - application progrmmaing iunterface
+
+	Client/server 3tier or more
+	same as 2 tier but with an added application server/ webserver in between
+
+
+2.6	classification od DBMS s82 skummläst
+
+
+2.7 SUMMARY S85.
+	
+
+
+
+
+
+
+
+
+Chapter 3. data,modelling entity-relationship ER model
+
+
+3.1	First step is the requreiment ciollection and analysis, already done for the task. These requirements are divided into concetual design
+	and functional analysis. The functional analysis is used to creat the High level transactions specification. The data requirements are used for the 	conceptual design and schema. Thhe concetal schema is then used to creat a logial design ( data model mapping ). With both the logical schema and 	transactions specification the application design can be begin.  The physical design and the transaction implemention is then created and at last the 	applications.
+
+	Conecptual design- concise description of the data requirements. Supposed to be high level and not include implementaion details.
+
+	Database design - high level schema is converted into the implementation of the data model. called logical design.
+
+	Physical design- internal storage is structured.
+
+
+3.2	
+
+3.3	The ER model describes entities, relationships and attributes.
+
+	an entity is an object in the real world with an independent existence, meaning it lives on its own. Every entity has attributes
+ 	the describing properties. simple or atomic attributes are those that cannot be divided into  subgroups. attributes with one values are single-
+	values. Multi-valued attributes contains multiple information.
+	Derived attributes is those that can be accessed/calculated from another attribute, age for example. non derived ar called stored attributes.
+	ENTITY_TYPE describes a collection with the same attributes.
+
+	KEY attribute is an attribute that is unique to other entitities within the same entity_type. First constraint.
+	value sets -  the range ( domain )  of an attribute.
+
+	Constraints on binary realations- use caridinality ratio ie the maximum number of reelationships an entity can participate in,..
+		also mimi caridnlaity constrant can be used for participation constraints.
+	
+
+
+
+
+
+
+
+
+CHAPTER 4 Relational Model Concepts
+
+
+5.1	A relations is thought of as table, each column represent a collection of data
+	a row is called a tuple, a column -attribute and the whole table a relation.
+	the dataType describing the entries for each column is called domain.
+
+	
+	A Domain is a set of atomic values, ATOMIC => indivisble, not composite values
+
+	Relation schema R, R(A1,A2,...,An) where R is relation name and A is the related attributes
+	Each Ai is the name of a specific domain D meaning
+	domain of Ai  D,  dom(Ai)
+	Degree of the relation is the number of atributes n
+
+	relation state r(R) is a set of tuples
+	intension for schema R ?
+	extension for r(R)?
+	
+	A relationstate is the degree o the domains which are a subset of the cartesian product ie the degree of all posible combinations
+
+	
+	RElations = set of tuples with no order.
+	order matters within the tuple?- to match the schema??
+	first normal form - allvalues are atomic 1 level only
+
+		
+	
+	ASSERTION the schema describes what an entity is and each tuple is an instance of that assertion
+
+	NOtations:	schema of deg n : 	R(A1,A2,...,An)
+			relation names :	Q,R,S
+			relation stater :	q,r,s
+			tuples :		t,u,v
+			attribut A of R :	R.A - like coding
+			n-tuple in r(A) _ 	t= <v1,v2,..., vn> refers to values 	t[Au,Aw,...,Az] refers to the names of the attributes
+
+
+5.2	There are 3 types of constraints
+	implicit - inherited from the data model
+	explicit - expreesed withDDL in the schemas
+	business rules - address in the application
+
+	data dependencies - ?
+	schema based constraints - domains, keys, nullsenetity integrity
+
+	Domain onstraints - the type of data that can be stored strings booleans etc can be subsets
+	key and nulls - keys contains a SUPERKEY that unique throughtout the system. 
+	minimal superkey reers to that the entity is removed if the attribute is removed
+	example student SSn = key {SSn,Name,Age} is a SUPERKEY
+
+	kinda strange... key is easy, candidate key is a kety with lower priorirty making the higher a PRIORITY KEY
+	PRIMARY KEYS ARE UNDERLINED
+
+	SQL FFL in 6.1 6.2
+
+
+
+5.3	UPDATE OPs TRANSACTINS & CONSTRAINT VIOLAtions
+	
+	operations are retiravals ( get ) and updates  ( set )
+	
+	UPDATE:
+		Insert
+			
+		DELETE
+		MODIFY
+	
+	
+	
+
+
+
+
+
+
+
+
+CHAPTER 8 relational calulus
+
+8.1	SELECT rows σ 
+	σ<selection condition>(R)    sigma
+
+	σDno=4 AND Salary>25000 (EMPLOYEE) ==  SELECT * FROM EMPLOYEE WHERE Dno=4 AND Salary>25000;
+
+
+	PROJECT select columns	π also removes doubles it s DISTINCT
+	π<attribute list>(R)
+
+	πSex, Salary(EMPLOYEE) == SELECT DISTINCT Sex, Salary FROM EMPLOYEE
+
+	
+	UNION ∪
+
+	INTERSECTION ∩
+
+	SET DIFFERENCE - 
+
+	
+	RENAME ρ
+
+	Cartesian Product × 
+	
+	JOIN ⨝
+	
+	EQUIJOIN is a join where the comparison is done with =	
+
+
+	8.3.4 ??? DIVISion finds commonalitey,  ex all the people working on same project as Someone
+
+
+			
+	AGGREGATE functions <grouping attributes> ℑ <function list> (R)
+		ρR(Dno, No_of_employees, Average_sal) (Dno ℑ COUNT Ssn, AVERAGE Salary (EMPLOYEE))
+	
+	Ezamples queries at 266
+
+
+
+8.6	TUPLE relational calculus
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CHAPTER 16
+
+16.1	Primary storage - small fast memory on he cpu - cache/main memory - DRAM in 	between?
+	secondary storage - SSD	- mass storage
+	Tertiary storage - Optical disks etc 
+
+
+	Persistent data - stored for a long time
+	tranient data - just used during program.
+	
+	primary storage is volatile and disk storage is nonvolatile
+
+
+16.2	HDDs
+	cans tore data on both sides if double sided
+
+
+
+
+
+
+
